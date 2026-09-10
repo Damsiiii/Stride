@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main", "Main", "feature/stride-run-club-website-5149401124163135921"]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
