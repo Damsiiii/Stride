@@ -22,9 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Raw media source assets (>100MB)
-Background/
-*.MP4
-*.MOV
-
