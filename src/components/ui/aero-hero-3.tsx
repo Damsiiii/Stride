@@ -9,8 +9,18 @@ export const Component = () => {
       <h1 className="text-2xl font-bold mb-2">Component Example</h1>
       <h2 className="text-xl font-semibold">{count}</h2>
       <div className="flex gap-2">
-        <button onClick={() => setCount((prev) => prev - 1)}>-</button>
-        <button onClick={() => setCount((prev) => prev + 1)}>+</button>
+        <button
+          className="px-4 py-2 bg-neutral-800 text-white rounded hover:bg-neutral-700 cursor-pointer transition-colors"
+          onClick={() => setCount((prev) => prev - 1)}
+        >
+          -
+        </button>
+        <button
+          className="px-4 py-2 bg-neutral-800 text-white rounded hover:bg-neutral-700 cursor-pointer transition-colors"
+          onClick={() => setCount((prev) => prev + 1)}
+        >
+          +
+        </button>
       </div>
     </div>
   );
