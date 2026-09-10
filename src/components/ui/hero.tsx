@@ -36,7 +36,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0f1416]">
+    <section className="relative flex min-h-screen w-full items-center justify-start overflow-hidden bg-[#0f1416]">
       {/* 1. Full-bleed Background Video & Poster Layer */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
         {/* Instant Poster Image (Zero CLS, renders immediately before video starts) */}
@@ -113,7 +113,7 @@ export default function Hero() {
 
         {/* 2. Visual Contrast Layer: Vignette + Multi-stop Gradient Overlay */}
         <div
-          className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-[#0f1416]/95 backdrop-brightness-[0.88]"
+          className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/45 to-[#0f1416]/95 backdrop-brightness-[0.88]"
           aria-hidden="true"
         />
       </div>
@@ -148,8 +148,8 @@ export default function Hero() {
         </span>
       </header>
 
-      {/* Foreground Hero Content (Aligned as in screenshot 1 & 2) */}
-      <div className="relative z-20 max-w-5xl px-6 text-center text-white pt-16 sm:pt-0">
+      {/* Foreground Hero Content (Left-Aligned as in example layout) */}
+      <div className="relative z-20 max-w-4xl px-6 md:px-16 lg:px-24 text-left text-white pt-24 sm:pt-16 pb-12 w-full">
         {/* Pill Badge (as in screenshot 2) */}
         <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/15 backdrop-blur-md text-[#e25822] text-xs font-bold tracking-widest uppercase mb-6 shadow-lg">
           <span className="h-2 w-2 rounded-full bg-[#e25822] animate-pulse" />
@@ -157,18 +157,18 @@ export default function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 className="text-center font-normal text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[1.08] mb-6 drop-shadow-md">
+        <h1 className="text-left font-normal text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[1.06] mb-6 drop-shadow-md">
           FIND YOUR STRIDE UNDER ELEPHANT ROCK
         </h1>
 
-        {/* Subtitle (as in screenshot 1) */}
-        <p className="mx-auto mb-8 max-w-3xl text-center font-normal text-lg sm:text-xl text-white/90 leading-relaxed drop-shadow">
+        {/* Subtitle (Left-aligned as in example) */}
+        <p className="mb-8 max-w-2xl text-left font-normal text-lg sm:text-xl text-white/90 leading-relaxed drop-shadow">
           Kurunegala's premier running community. Connecting runners of all levels around the lake, Ethagala trails, and scenic North Western routes.
         </p>
 
-        {/* Buttons (exact format in screenshot 1) */}
-        <div className="flex items-center justify-center">
-          <button className="group mx-auto flex cursor-pointer items-center justify-center gap-2 rounded-full border-none bg-transparent p-0 font-normal shadow-none">
+        {/* Buttons (Left-aligned as in example) */}
+        <div className="flex items-center justify-start">
+          <button className="group flex cursor-pointer items-center justify-start gap-2 rounded-full border-none bg-transparent p-0 font-normal shadow-none">
             <span className="rounded-full bg-[#e25822] hover:bg-[#d04b19] px-8 py-4 text-white text-base font-bold transition-all duration-300 shadow-lg shadow-[#e25822]/30">
               Join Stride Run Club
             </span>
