@@ -18,7 +18,7 @@ export default function Hero() {
       <header className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-8 py-6 max-w-7xl mx-auto w-full">
         <div className="flex items-center gap-3">
           <img
-            src="/images/stride-logo-dark.jpeg"
+            src={`${import.meta.env.BASE_URL}images/stride-logo-dark.jpeg`}
             alt="Stride Run Club Logo"
             className="h-12 w-12 rounded-full border border-white/20 object-cover"
           />
