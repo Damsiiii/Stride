@@ -65,30 +65,27 @@ export default function GallerySection() {
   ]
 
   return (
-    <section id="gallery" className="relative w-full bg-[#070707] py-28 md:py-36 border-t border-white/[0.08]">
-      <div className="mx-auto max-w-7xl px-6 md:px-12">
-        {/* Header Block */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-12 border-b border-white/[0.08]">
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <span className="h-px w-8 bg-[#D6FF57]" />
-              <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-[#D6FF57] uppercase">
-                GALLERY ARCHIVE
-              </span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-[-0.03em] leading-[0.92] text-white">
-              MOMENTS ON THE ROAD
-            </h2>
+    <section id="gallery" className="relative w-full bg-[#070707] py-28 md:py-36 border-t border-white/[0.08] text-left">
+      <div className="w-full max-w-7xl px-6 md:px-12 lg:px-16 text-left">
+        {/* Header Block - Left Aligned */}
+        <div className="flex flex-col items-start text-left gap-4 pb-12 border-b border-white/[0.08] max-w-3xl">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-[#D6FF57]" />
+            <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-[#D6FF57] uppercase">
+              GALLERY ARCHIVE
+            </span>
           </div>
-
-          <div className="flex items-center gap-4 text-white/50 text-xs">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-[-0.03em] leading-[0.92] text-white text-left">
+            MOMENTS ON THE ROAD
+          </h2>
+          <div className="flex items-center gap-2.5 text-white/50 text-xs">
             <Camera className="h-4 w-4 text-[#D6FF57]" />
             <span className="tracking-wider uppercase">Captured during our 2023 - 2024 seasons</span>
           </div>
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-10 text-left">
           {items.map((item, idx) => (
             <motion.div
               key={idx}
@@ -96,7 +93,7 @@ export default function GallerySection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
-              className={`group relative overflow-hidden border border-white/[0.08] bg-[#111111] ${item.aspect}`}
+              className={`group relative overflow-hidden border border-white/[0.08] bg-[#111111] ${item.aspect} text-left`}
             >
               {/* Image with zoom on hover */}
               <img
@@ -116,16 +113,16 @@ export default function GallerySection() {
                 </span>
               </div>
 
-              {/* Bottom Details & Caption */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col justify-end">
-                <div className="flex items-center gap-1.5 text-[11px] text-[#D6FF57] font-mono tracking-wider uppercase mb-1.5">
+              {/* Bottom Details & Caption - Left Aligned */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col justify-end text-left items-start">
+                <div className="flex items-center gap-1.5 text-[11px] text-[#D6FF57] font-mono tracking-wider uppercase mb-1.5 text-left">
                   <MapPin className="h-3 w-3" />
                   <span>{item.location}</span>
                 </div>
-                <h3 className="text-lg font-black tracking-tight text-white uppercase leading-snug">
+                <h3 className="text-lg font-black tracking-tight text-white uppercase leading-snug text-left">
                   {item.title}
                 </h3>
-                <p className="mt-1 text-xs text-white/50 font-light line-clamp-1 group-hover:text-white/80 transition-colors">
+                <p className="mt-1 text-xs text-white/50 font-light line-clamp-1 group-hover:text-white/80 transition-colors text-left">
                   {item.subtitle}
                 </p>
               </div>
@@ -133,11 +130,11 @@ export default function GallerySection() {
           ))}
         </div>
 
-        {/* Strava / Community Banner */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between border border-white/[0.08] bg-white/[0.02] p-6 gap-4">
+        {/* Strava / Community Banner - Left Aligned */}
+        <div className="mt-12 flex flex-col sm:flex-row items-start justify-start border border-white/[0.08] bg-white/[0.02] p-6 gap-4 text-left">
           <div className="flex items-center gap-3">
             <Compass className="h-4 w-4 text-[#D6FF57]" />
-            <span className="text-xs tracking-wider text-white/70 uppercase">
+            <span className="text-xs tracking-wider text-white/70 uppercase text-left">
               Tag <span className="text-[#D6FF57] font-bold">#StrideRunClub</span> on Instagram or Strava to get featured in our weekly dispatch.
             </span>
           </div>

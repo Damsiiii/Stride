@@ -51,45 +51,47 @@ export default function Navbar() {
           : "bg-black/40 backdrop-blur-md border-b border-white/[0.06]"
       }`}
     >
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 md:px-10">
-        {/* Left Side: Brand Logo & Wordmark */}
-        <a
-          href="#"
-          className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D6FF57] rounded-full p-1"
-        >
-          <div className="relative">
-            <img
-              src={`${baseUrl}/images/stride-logo-dark.jpeg`}
-              alt="Stride Run Club Logo"
-              className="h-10 w-10 md:h-11 md:w-11 rounded-full border border-white/15 object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-[#D6FF57] ring-2 ring-[#070707]" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[14px] md:text-[15px] font-black tracking-[0.16em] text-white">
-              STRIDE
-            </span>
-            <span className="text-[9px] font-bold tracking-[0.22em] text-white/40 uppercase">
-              RUN CLUB
-            </span>
-          </div>
-        </a>
+      <div className="flex h-full w-full items-center justify-between px-6 md:px-12 lg:px-16">
+        {/* Left Side: Brand Logo & Wordmark + Left-Aligned Nav Links */}
+        <div className="flex items-center gap-8 lg:gap-12">
+          <a
+            href="#"
+            className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D6FF57] rounded-full p-1"
+          >
+            <div className="relative">
+              <img
+                src={`${baseUrl}/images/stride-logo-dark.jpeg`}
+                alt="Stride Run Club Logo"
+                className="h-10 w-10 md:h-11 md:w-11 rounded-full border border-white/15 object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-[#D6FF57] ring-2 ring-[#070707]" />
+            </div>
+            <div className="flex flex-col text-left">
+              <span className="text-[14px] md:text-[15px] font-black tracking-[0.16em] text-white">
+                STRIDE
+              </span>
+              <span className="text-[9px] font-bold tracking-[0.22em] text-white/40 uppercase">
+                RUN CLUB
+              </span>
+            </div>
+          </a>
 
-        {/* Center: Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-8 lg:gap-10">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => {
-                e.preventDefault()
-                handleLinkClick(link.href)
-              }}
-              className="relative text-[11px] font-bold tracking-[0.2em] text-white/50 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:text-[#D6FF57]"
-            >
-              {link.label}
-            </a>
-          ))}
+          {/* Left-Aligned Desktop Navigation Links */}
+          <div className="hidden md:flex items-center gap-7 lg:gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault()
+                  handleLinkClick(link.href)
+                }}
+                className="relative text-[11px] font-bold tracking-[0.2em] text-white/50 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:text-[#D6FF57]"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Right Side: Location Tag & Join Button */}
