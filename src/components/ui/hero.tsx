@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useRef, useState } from "react"
-import { ArrowUpRight, Pause, Play } from "lucide-react"
+import { Pause, Play } from "lucide-react"
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -118,16 +118,6 @@ export default function Hero() {
         />
       </div>
 
-      {/* Decorative Grid Lines Overlay */}
-      <div className="absolute inset-0 z-10 size-full pointer-events-none" aria-hidden="true">
-        <div className="grid w-full grid-cols-12 divide-x divide-white/10 h-full">
-          <div className="col-span-1 h-full" />
-          <div className="col-span-3 h-full" />
-          <div className="col-span-4 h-full" />
-          <div className="col-span-3 h-full" />
-          <div className="col-span-1 h-full" />
-        </div>
-      </div>
 
       {/* Header Bar */}
       <header className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-6 py-6 md:px-12 max-w-7xl mx-auto w-full">
@@ -150,12 +140,6 @@ export default function Hero() {
 
       {/* Foreground Hero Content (Left-Aligned as in example layout) */}
       <div className="relative z-20 max-w-4xl px-6 md:px-16 lg:px-24 text-left text-white pt-24 sm:pt-16 pb-12 w-full">
-        {/* Pill Badge (as in screenshot 2) */}
-        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/15 backdrop-blur-md text-[#e25822] text-xs font-bold tracking-widest uppercase mb-6 shadow-lg">
-          <span className="h-2 w-2 rounded-full bg-[#e25822] animate-pulse" />
-          EVERY TUESDAY & SATURDAY MORNING
-        </div>
-
         {/* Headline */}
         <h1 className="text-left font-normal text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[1.06] mb-6 drop-shadow-md">
           FIND YOUR STRIDE UNDER ELEPHANT ROCK
@@ -166,15 +150,10 @@ export default function Hero() {
           Kurunegala's premier running community. Connecting runners of all levels around the lake, Ethagala trails, and scenic North Western routes.
         </p>
 
-        {/* Buttons (Left-aligned as in example) */}
-        <div className="flex items-center justify-start">
-          <button className="group flex cursor-pointer items-center justify-start gap-2 rounded-full border-none bg-transparent p-0 font-normal shadow-none">
-            <span className="rounded-full bg-[#e25822] hover:bg-[#d04b19] px-8 py-4 text-white text-base font-bold transition-all duration-300 shadow-lg shadow-[#e25822]/30">
-              Join Stride Run Club
-            </span>
-            <div className="relative flex h-fit cursor-pointer items-center justify-center overflow-hidden rounded-full bg-[#e25822] hover:bg-[#d04b19] p-4 text-white transition-all duration-300 shadow-lg shadow-[#e25822]/30">
-              <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </div>
+        {/* Action Button */}
+        <div className="flex items-center justify-start pt-2">
+          <button className="inline-flex cursor-pointer items-center justify-center rounded-full bg-[#e25822] px-9 py-3.5 text-base font-bold text-white shadow-lg shadow-[#e25822]/35 transition-all duration-300 hover:bg-[#ea622b] hover:scale-[1.02] hover:shadow-[#e25822]/50 active:scale-95">
+            Get Started
           </button>
         </div>
       </div>
