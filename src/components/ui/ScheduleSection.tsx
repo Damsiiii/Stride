@@ -73,26 +73,31 @@ export default function ScheduleSection() {
   }
 
   return (
-    <section id="runs" className="relative w-full bg-[#070707] py-28 md:py-36 border-t border-white/[0.08] text-left">
-      <div className="w-full max-w-7xl px-6 md:px-12 lg:px-16 text-left">
-        {/* Header Title Block - Aligned to Left */}
-        <div className="flex flex-col items-start text-left gap-4 pb-12 border-b border-white/[0.08] max-w-3xl">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-[#D6FF57]" />
-            <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-[#D6FF57] uppercase">
-              TIMETABLE
-            </span>
+    <section id="runs" className="relative w-full bg-[#070707] py-28 md:py-36 border-t border-white/[0.08]">
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
+        {/* Header Title Block */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-12 border-b border-white/[0.08]">
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="h-px w-8 bg-[#D6FF57]" />
+              <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-[#D6FF57] uppercase">
+                TIMETABLE
+              </span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-[-0.03em] leading-[0.92] text-white">
+              WEEKLY RUNS
+            </h2>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-[-0.03em] leading-[0.92] text-white text-left">
-            WEEKLY RUNS
-          </h2>
-          <p className="text-[13px] md:text-[14px] text-white/50 leading-relaxed font-light text-left">
-            We gather before sunrise. Bag drop and hydration available at all starting points. Never miss a session by joining our WhatsApp briefing group.
-          </p>
+
+          <div className="max-w-md">
+            <p className="text-[13px] md:text-[14px] text-white/50 leading-relaxed font-light">
+              We gather before sunrise. Bag drop and hydration available at all starting points. Never miss a session by joining our WhatsApp briefing group.
+            </p>
+          </div>
         </div>
 
         {/* Schedule List */}
-        <div className="divide-y divide-white/[0.08] text-left">
+        <div className="divide-y divide-white/[0.08]">
           {runs.map((run, index) => {
             const isExpanded = selectedRun === index
             return (
@@ -103,65 +108,69 @@ export default function ScheduleSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
                 onClick={() => setSelectedRun(isExpanded ? null : index)}
-                className="group cursor-pointer py-8 transition-colors duration-200 hover:bg-white/[0.02] px-2 sm:px-4 text-left"
+                className="group cursor-pointer py-8 transition-colors duration-200 hover:bg-white/[0.02] px-2 sm:px-4"
               >
-                <div className="flex flex-col lg:flex-row lg:items-center justify-start gap-6 lg:gap-12 text-left">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                   {/* Left: Day & Title */}
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 lg:w-[420px] text-left">
-                    <span className="text-[11px] font-mono tracking-[0.25em] text-white/40 uppercase w-28 shrink-0">
-                      {run.day}
-                    </span>
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-8 lg:w-1/2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[11px] font-mono tracking-[0.25em] text-white/40 uppercase w-28 shrink-0">
+                        {run.day}
+                      </span>
+                    </div>
                     <div>
-                      <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-[#D6FF57] transition-colors text-left">
+                      <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-[#D6FF57] transition-colors">
                         {run.title}
                       </h3>
-                      <div className="mt-1 flex items-center gap-2 text-[12px] text-white/40 text-left">
+                      <div className="mt-1 flex items-center gap-2 text-[12px] text-white/40">
                         <MapPin className="h-3.5 w-3.5 text-white/30" />
                         <span>{run.location}</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Left-Aligned Info: Time, Distance, Intensity, and Action */}
-                  <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-left">
-                    {/* Time pill */}
-                    <div className="flex items-center gap-1.5 text-[12px] font-mono text-white/70">
-                      <Clock className="h-3.5 w-3.5 text-[#D6FF57]" />
-                      <span>{run.time}</span>
-                    </div>
+                  {/* Right: Time, Distance & Action */}
+                  <div className="flex items-center justify-between lg:justify-end gap-6 sm:gap-8 lg:w-1/2">
+                    <div className="flex items-center gap-4">
+                      {/* Time pill */}
+                      <div className="flex items-center gap-1.5 text-[12px] font-mono text-white/70">
+                        <Clock className="h-3.5 w-3.5 text-[#D6FF57]" />
+                        <span>{run.time}</span>
+                      </div>
 
-                    {/* Distance badge */}
-                    <div className="rounded-full border border-white/15 bg-white/[0.04] px-3 py-1 text-[10px] font-bold tracking-wider text-white uppercase">
-                      {run.distance}
-                    </div>
+                      {/* Distance badge */}
+                      <div className="rounded-full border border-white/15 bg-white/[0.04] px-3 py-1 text-[10px] font-bold tracking-wider text-white uppercase">
+                        {run.distance}
+                      </div>
 
-                    {/* Intensity badge */}
-                    <span
-                      className={`rounded-full border px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase ${getIntensityBadge(
-                        run.intensity
-                      )}`}
-                    >
-                      {run.intensity}
-                    </span>
+                      {/* Intensity badge */}
+                      <span
+                        className={`hidden sm:inline-block rounded-full border px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase ${getIntensityBadge(
+                          run.intensity
+                        )}`}
+                      >
+                        {run.intensity}
+                      </span>
+                    </div>
 
                     {/* Arrow action */}
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-300 group-hover:border-[#D6FF57] group-hover:bg-[#D6FF57] group-hover:text-black text-white/50">
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-300 group-hover:border-[#D6FF57] group-hover:bg-[#D6FF57] group-hover:text-black text-white/50">
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </div>
                   </div>
                 </div>
 
                 {/* Expanded Details on Click */}
                 {isExpanded && (
-                  <div className="mt-6 pt-6 border-t border-white/[0.06] grid grid-cols-1 md:grid-cols-2 gap-4 text-xs animate-[fade-in-up_0.2s_ease-out] text-left">
-                    <div className="flex items-start gap-2 text-white/70 text-left">
+                  <div className="mt-6 pt-6 border-t border-white/[0.06] grid grid-cols-1 md:grid-cols-2 gap-4 text-xs animate-[fade-in-up_0.2s_ease-out]">
+                    <div className="flex items-start gap-2 text-white/70">
                       <Activity className="h-4 w-4 text-[#D6FF57] shrink-0 mt-0.5" />
                       <div>
                         <span className="font-bold text-white uppercase">Pace Groups: </span>
                         <span>{run.paceGroups}</span>
                       </div>
                     </div>
-                    <div className="flex items-start gap-2 text-white/50 text-left">
+                    <div className="flex items-start gap-2 text-white/50">
                       <Calendar className="h-4 w-4 text-white/40 shrink-0 mt-0.5" />
                       <span>{run.note}</span>
                     </div>
@@ -172,8 +181,8 @@ export default function ScheduleSection() {
           })}
         </div>
 
-        {/* Bottom Banner Note - Left Aligned */}
-        <div className="mt-12 rounded-none border border-white/[0.08] bg-white/[0.02] p-6 flex flex-col sm:flex-row items-start justify-start gap-4 text-left">
+        {/* Bottom Banner Note */}
+        <div className="mt-12 rounded-none border border-white/[0.08] bg-white/[0.02] p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <span className="h-2 w-2 rounded-full bg-[#D6FF57] animate-pulse" />
             <span className="text-xs tracking-wider text-white/70 uppercase">
