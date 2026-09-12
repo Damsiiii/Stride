@@ -1,0 +1,92 @@
+"use client"
+
+import { ArrowUp } from "lucide-react"
+
+export default function Footer() {
+  const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "")
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  return (
+    <footer className="w-full bg-[#070707] border-t border-white/[0.08] text-white text-left">
+      {/* Top Section */}
+      <div className="w-full max-w-7xl px-6 md:px-12 lg:px-16 py-16 text-left">
+        <div className="flex flex-col md:flex-row md:items-center justify-start gap-8 md:gap-16 pb-12 border-b border-white/[0.08] text-left">
+          {/* Logo & Slogan */}
+          <div className="flex items-center gap-4 text-left">
+            <img
+              src={`${baseUrl}/images/stride-logo-dark.jpeg`}
+              alt="Stride Run Club"
+              className="h-12 w-12 rounded-full border border-white/20 object-cover"
+            />
+            <div className="text-left">
+              <span className="block text-lg font-black tracking-widest text-white text-left">
+                STRIDE <span className="text-[#D6FF57]">RUN CLUB</span>
+              </span>
+              <span className="text-[10px] font-mono tracking-[0.25em] text-white/40 uppercase text-left">
+                KURUNEGALA • SRI LANKA
+              </span>
+            </div>
+          </div>
+
+          {/* Quick Links - Left Aligned */}
+          <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-left">
+            <a
+              href="#about"
+              className="text-[11px] font-bold tracking-[0.2em] text-white/40 transition-colors hover:text-white uppercase"
+            >
+              ABOUT
+            </a>
+            <a
+              href="#runs"
+              className="text-[11px] font-bold tracking-[0.2em] text-white/40 transition-colors hover:text-white uppercase"
+            >
+              RUNS
+            </a>
+            <a
+              href="#gallery"
+              className="text-[11px] font-bold tracking-[0.2em] text-white/40 transition-colors hover:text-white uppercase"
+            >
+              GALLERY
+            </a>
+            <a
+              href="#contact"
+              className="text-[11px] font-bold tracking-[0.2em] text-white/40 transition-colors hover:text-white uppercase"
+            >
+              JOIN US
+            </a>
+          </div>
+        </div>
+
+        {/* Editorial Tagline & Back to Top - Left Aligned */}
+        <div className="py-12 border-b border-white/[0.08] flex flex-col items-start gap-6 text-left">
+          <div className="text-left">
+            <span className="text-[10px] font-mono tracking-[0.3em] text-[#D6FF57] uppercase block mb-2 text-left">
+              // MOTTO
+            </span>
+            <p className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white/90 leading-tight text-left">
+              NEVER RUN ALONE.
+            </p>
+          </div>
+
+          <button
+            onClick={scrollToTop}
+            aria-label="Back to top of page"
+            className="flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-4 py-2 text-[11px] font-mono tracking-widest text-white/60 transition-all hover:border-[#D6FF57] hover:bg-[#D6FF57] hover:text-black cursor-pointer"
+          >
+            <span>BACK TO TOP</span>
+            <ArrowUp className="h-3.5 w-3.5" />
+          </button>
+        </div>
+
+        {/* Bottom Colophon - Left Aligned */}
+        <div className="pt-8 flex flex-col sm:flex-row items-start justify-start gap-4 sm:gap-8 text-[10px] font-mono tracking-widest text-white/30 uppercase text-left">
+          <p>© {new Date().getFullYear()} STRIDE RUN CLUB. ALL RIGHTS RESERVED.</p>
+          <p>ETHAGALA RIDGES • 7.4863° N, 80.3623° E</p>
+        </div>
+      </div>
+    </footer>
+  )
+}
