@@ -1,21 +1,30 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Users, Compass, Zap, Heart } from "lucide-react"
+import { Users, Compass, Zap, Heart, ArrowRight, ShieldCheck } from "lucide-react"
 
 export default function AboutSection() {
-  const stats = [
-    { number: "120+", label: "Active Members", desc: "Runners across Kurunegala" },
-    { number: "4", label: "Weekly Sessions", desc: "Intervals, tempos & long runs" },
-    { number: "15K+", label: "KM Logged Monthly", desc: "Covering city roads & trails" },
-    { number: "2023", label: "Est. Year", desc: "Founded under Elephant Rock" },
-  ]
-
   const pillars = [
-    { icon: Users, title: "All Paces Welcome", desc: "From casual 6:30/km joggers to 3:45/km pacers." },
-    { icon: Compass, title: "Scenic City Routes", desc: "Kurunegala Lake loops, Ethagala ridges, and green rural stretches." },
-    { icon: Zap, title: "Zero Ego Culture", desc: "We start together, we finish together. Nobody runs alone." },
-    { icon: Heart, title: "Community First", desc: "Free to join forever. Hydration, banter, and post-run coffee included." },
+    {
+      icon: Users,
+      title: "All Paces Welcome",
+      desc: "From conversational 6:30/km joggers to competitive pacers. Nobody runs alone.",
+    },
+    {
+      icon: Compass,
+      title: "Scenic City Routes",
+      desc: "Kurunegala Lake loops, Ethagala ridges, and green rural stretches off the beaten track.",
+    },
+    {
+      icon: Zap,
+      title: "Zero Ego Culture",
+      desc: "We start together, we finish together. Supportive pacing and encouragement at every mile.",
+    },
+    {
+      icon: Heart,
+      title: "Community First",
+      desc: "100% free to join forever. Hydration, banter, and post-run morning coffee always included.",
+    },
   ]
 
   return (
@@ -51,36 +60,40 @@ export default function AboutSection() {
             </h2>
 
             <p className="text-[14px] md:text-[15px] font-light leading-[1.7] text-white/60 text-left">
-              Founded in 2023 under the towering shadow of Ethagala (Elephant Rock), Stride Run Club was born out of a simple desire: to bring the runners of Kurunegala together onto shared roads and trails.
+              Founded under the towering shadow of Ethagala (Elephant Rock), Stride Run Club was born out of a simple desire: to bring the runners of Kurunegala together onto shared roads and trails.
             </p>
 
             <p className="text-[14px] md:text-[15px] font-light leading-[1.7] text-white/60 text-left">
-              Whether you are training for your debut half-marathon or looking to run your very first 5K around the serene lake, you will find encouragement, rhythm, and belonging here. No fees. No gatekeeping. Just your shoes and the morning breeze.
+              Whether you are training for your debut half-marathon or looking to run your very first laps around the serene lake, you will find encouragement, rhythm, and belonging here. No fees. No gatekeeping. Just your shoes and the morning breeze.
             </p>
 
-            {/* Micro Values List */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 text-left">
-              {pillars.map((item, index) => {
-                const Icon = item.icon
-                return (
-                  <div
-                    key={index}
-                    className="flex flex-col gap-1.5 border-l border-white/10 pl-3.5 py-1 text-left"
-                  >
-                    <div className="flex items-center gap-2 text-white text-[13px] font-bold">
-                      <Icon className="h-3.5 w-3.5 text-[#D6FF57]" />
-                      <span>{item.title}</span>
-                    </div>
-                    <p className="text-[11px] text-white/40 leading-relaxed text-left">
-                      {item.desc}
-                    </p>
-                  </div>
-                )
-              })}
+            {/* Club Commitment Badge */}
+            <div className="mt-2 border border-white/[0.08] bg-white/[0.02] p-5 flex items-start gap-4">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#D6FF57]/10 text-[#D6FF57]">
+                <ShieldCheck className="h-5 w-5" />
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-xs font-bold uppercase tracking-wider text-white">
+                  Open Community • Free Forever
+                </span>
+                <span className="text-[11px] text-white/50 leading-relaxed mt-0.5">
+                  No subscription, membership dues, or prerequisites. Just check our timetable and turn up.
+                </span>
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <a
+                href="#runs"
+                className="inline-flex items-center gap-2 text-xs font-mono tracking-widest text-[#D6FF57] uppercase hover:underline"
+              >
+                <span>View Weekly Running Schedule</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
             </div>
           </motion.div>
 
-          {/* Right Column: Key Stats Grid */}
+          {/* Right Column: Core Pillars / Ethos Grid */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -89,35 +102,39 @@ export default function AboutSection() {
             className="lg:col-span-7 text-left"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-              {stats.map((stat, idx) => (
-                <div
-                  key={idx}
-                  className="group relative flex flex-col justify-between border border-white/[0.08] bg-white/[0.02] p-8 sm:p-10 transition-all duration-300 hover:border-[#D6FF57]/40 hover:bg-white/[0.04] text-left"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono tracking-widest text-white/30">
-                      0{idx + 1}
-                    </span>
-                    <span className="h-1.5 w-1.5 rounded-full bg-white/20 group-hover:bg-[#D6FF57] transition-colors" />
-                  </div>
-
-                  <div className="my-6 text-left">
-                    <div className="text-5xl sm:text-6xl lg:text-7xl font-black text-[#D6FF57] tracking-tight group-hover:scale-[1.02] transition-transform origin-left">
-                      {stat.number}
+              {pillars.map((item, idx) => {
+                const Icon = item.icon
+                return (
+                  <div
+                    key={idx}
+                    className="group relative flex flex-col justify-between border border-white/[0.08] bg-white/[0.02] p-8 sm:p-9 transition-all duration-300 hover:border-[#D6FF57]/40 hover:bg-white/[0.04] text-left"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/[0.04] border border-white/10 text-[#D6FF57] group-hover:border-[#D6FF57]/30 group-hover:bg-[#D6FF57]/10 transition-colors">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <span className="h-1.5 w-1.5 rounded-full bg-white/20 group-hover:bg-[#D6FF57] transition-colors" />
                     </div>
-                    <div className="text-[12px] font-bold tracking-[0.2em] text-white/70 uppercase mt-2">
-                      {stat.label}
+
+                    <div className="my-5 text-left">
+                      <h3 className="text-[15px] sm:text-[16px] font-bold tracking-tight text-white uppercase group-hover:text-[#D6FF57] transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-[12px] sm:text-[13px] text-white/50 font-light leading-relaxed mt-2.5 text-left">
+                        {item.desc}
+                      </p>
+                    </div>
+
+                    <div className="border-t border-white/[0.06] pt-3 flex items-center justify-between text-[10px] font-mono tracking-widest text-white/30 uppercase">
+                      <span>CORE PILLAR</span>
+                      <span className="group-hover:text-[#D6FF57] transition-colors">STRIDE</span>
                     </div>
                   </div>
-
-                  <p className="text-[12px] text-white/40 font-light border-t border-white/[0.06] pt-3 text-left">
-                    {stat.desc}
-                  </p>
-                </div>
-              ))}
+                )
+              })}
             </div>
 
-            {/* Editorial quote block below stats */}
+            {/* Editorial quote block below pillars */}
             <div className="mt-4 border border-white/[0.08] bg-black/40 p-6 sm:p-8 flex flex-col items-start gap-2 text-left">
               <p className="text-[13px] md:text-[14px] font-mono uppercase tracking-[0.15em] text-white/70 text-left">
                 "THE HARDEST PART IS TYING YOUR LACES. WE HANDLE THE REST."
