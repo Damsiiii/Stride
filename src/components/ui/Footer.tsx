@@ -10,29 +10,29 @@ export default function Footer() {
   }
 
   return (
-    <footer className="w-full bg-[#070707] border-t border-white/[0.08] text-white text-left">
+    <footer className="w-full bg-[#070707] border-t border-white/[0.08] text-white">
       {/* Top Section */}
-      <div className="w-full max-w-7xl px-6 md:px-12 lg:px-16 py-16 text-left">
-        <div className="flex flex-col md:flex-row md:items-center justify-start gap-8 md:gap-16 pb-12 border-b border-white/[0.08] text-left">
+      <div className="mx-auto max-w-7xl px-6 md:px-12 py-16">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 pb-12 border-b border-white/[0.08]">
           {/* Logo & Slogan */}
-          <div className="flex items-center gap-4 text-left">
+          <div className="flex items-center gap-4">
             <img
               src={`${baseUrl}/images/stride-logo-dark.jpeg`}
               alt="Stride Run Club"
               className="h-12 w-12 rounded-full border border-white/20 object-cover"
             />
-            <div className="text-left">
-              <span className="block text-lg font-black tracking-widest text-white text-left">
+            <div>
+              <span className="block text-lg font-black tracking-widest text-white">
                 STRIDE <span className="text-[#D6FF57]">RUN CLUB</span>
               </span>
-              <span className="text-[10px] font-mono tracking-[0.25em] text-white/40 uppercase text-left">
+              <span className="text-[10px] font-mono tracking-[0.25em] text-white/40 uppercase">
                 KURUNEGALA • SRI LANKA
               </span>
             </div>
           </div>
 
-          {/* Quick Links - Left Aligned */}
-          <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-left">
+          {/* Quick Links */}
+          <div className="flex flex-wrap items-center gap-6 sm:gap-8">
             <a
               href="#about"
               className="text-[11px] font-bold tracking-[0.2em] text-white/40 transition-colors hover:text-white uppercase"
@@ -60,13 +60,13 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Editorial Tagline & Back to Top - Left Aligned */}
-        <div className="py-12 border-b border-white/[0.08] flex flex-col items-start gap-6 text-left">
-          <div className="text-left">
-            <span className="text-[10px] font-mono tracking-[0.3em] text-[#D6FF57] uppercase block mb-2 text-left">
+        {/* Editorial Tagline & Back to Top */}
+        <div className="py-12 border-b border-white/[0.08] flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <span className="text-[10px] font-mono tracking-[0.3em] text-[#D6FF57] uppercase block mb-2">
               // MOTTO
             </span>
-            <p className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white/90 leading-tight text-left">
+            <p className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white/90 leading-tight">
               NEVER RUN ALONE.
             </p>
           </div>
@@ -74,15 +74,15 @@ export default function Footer() {
           <button
             onClick={scrollToTop}
             aria-label="Back to top of page"
-            className="flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-4 py-2 text-[11px] font-mono tracking-widest text-white/60 transition-all hover:border-[#D6FF57] hover:bg-[#D6FF57] hover:text-black cursor-pointer"
+            className="self-start md:self-auto flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-4 py-2 text-[11px] font-mono tracking-widest text-white/60 transition-all hover:border-[#D6FF57] hover:bg-[#D6FF57] hover:text-black cursor-pointer"
           >
             <span>BACK TO TOP</span>
             <ArrowUp className="h-3.5 w-3.5" />
           </button>
         </div>
 
-        {/* Bottom Colophon - Left Aligned */}
-        <div className="pt-8 flex flex-col sm:flex-row items-start justify-start gap-4 sm:gap-8 text-[10px] font-mono tracking-widest text-white/30 uppercase text-left">
+        {/* Bottom Colophon */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] font-mono tracking-widest text-white/30 uppercase">
           <p>© {new Date().getFullYear()} STRIDE RUN CLUB. ALL RIGHTS RESERVED.</p>
           <p>ETHAGALA RIDGES • 7.4863° N, 80.3623° E</p>
         </div>
