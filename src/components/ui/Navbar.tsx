@@ -45,10 +45,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 h-[76px] w-full transition-all duration-300 ${
-        isScrolled
-          ? "bg-[#070707]/90 backdrop-blur-xl border-b border-white/[0.1] shadow-2xl shadow-black/80"
-          : "bg-[#070707]/40 backdrop-blur-md border-b border-white/[0.06]"
+      className={`fixed top-0 left-0 right-0 z-50 h-[76px] w-full transition-all duration-300 bg-[#070707] border-b border-white/[0.1] ${
+        isScrolled ? "shadow-2xl shadow-black/80" : "shadow-md shadow-black/40"
       }`}
     >
       <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between px-6 md:px-12 lg:px-16">
@@ -134,7 +132,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Fullscreen Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[76px] z-40 flex flex-col justify-between bg-[#070707]/98 backdrop-blur-3xl px-8 py-8 md:hidden border-t border-white/[0.1] transition-all duration-300">
+        <div className="fixed inset-0 top-[76px] z-40 flex flex-col justify-between bg-[#070707] px-8 py-8 md:hidden border-t border-white/[0.1] transition-all duration-300">
           <div className="flex flex-col gap-5 pt-2">
             <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-[#D6FF57] uppercase">
