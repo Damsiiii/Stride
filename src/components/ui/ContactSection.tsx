@@ -2,10 +2,14 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { CheckCircle2, Send } from "lucide-react"
+import { CheckCircle2, Send, Loader2 } from "lucide-react"
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000"
 
 export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -13,10 +17,36 @@ export default function ContactSection() {
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!formData.name || !formData.contact) return
-    setSubmitted(true)
+
+    setLoading(true)
+    setError(null)
+
+    try {
+      const res = await fetch(`${API_URL}/api/contacts`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.")
+      }
+
+      setSubmitted(true)
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Could not connect to the server. Please try again later."
+      )
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -123,6 +153,7 @@ export default function ContactSection() {
                 <button
                   onClick={() => {
                     setSubmitted(false)
+                    setError(null)
                     setFormData({ name: "", contact: "", pace: "Casual (6:00 - 7:00 /km)", message: "" })
                   }}
                   className="text-xs font-mono tracking-widest text-[#D6FF57] hover:underline uppercase"
@@ -204,13 +235,30 @@ export default function ContactSection() {
                   </div>
                 </div>
 
+                {/* Error message */}
+                {error && (
+                  <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-[13px] text-red-400 animate-[fade-in-up_0.3s_ease-out]">
+                    {error}
+                  </div>
+                )}
+
                 {/* Submit button */}
                 <button
                   type="submit"
-                  className="group flex w-full items-center justify-center gap-3 rounded-full bg-[#D6FF57] py-4 text-[13px] font-black uppercase tracking-[0.16em] text-black transition-all duration-300 hover:bg-[#e0ff8a] hover:shadow-[0_0_20px_rgba(214,255,87,0.45)] hover:scale-[1.01] active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  disabled={loading}
+                  className="group flex w-full items-center justify-center gap-3 rounded-full bg-[#D6FF57] py-4 text-[13px] font-black uppercase tracking-[0.16em] text-black transition-all duration-300 hover:bg-[#e0ff8a] hover:shadow-[0_0_20px_rgba(214,255,87,0.45)] hover:scale-[1.01] active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
                 >
-                  <span>JOIN CLUB TODAY</span>
-                  <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  {loading ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <span>SUBMITTING...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>JOIN CLUB TODAY</span>
+                      <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </>
+                  )}
                 </button>
               </form>
             )}
