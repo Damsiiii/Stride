@@ -13,11 +13,22 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",  // Vite dev server
-      "http://localhost:4173",  // Vite preview
-    ],
-    methods: ["POST"],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, health checks)
+      if (!origin) return callback(null, true);
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "http://localhost:4173",
+        process.env.CLIENT_URL,
+      ].filter(Boolean);
+      
+      if (allowedOrigins.includes(origin) || process.env.CLIENT_URL === "*") {
+        callback(null, true);
+      } else {
+        callback(null, true); // Alternatively allow all origins if not explicitly restricted
+      }
+    },
+    methods: ["GET", "POST"],
   })
 );
 
