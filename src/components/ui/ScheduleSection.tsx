@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Clock, MapPin, ArrowRight, Activity, Calendar } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 interface RunEvent {
   day: string
@@ -10,190 +10,142 @@ interface RunEvent {
   location: string
   time: string
   distance: string
-  intensity: "Easy" | "Moderate" | "Challenging"
-  paceGroups: string
-  note: string
 }
 
 export default function ScheduleSection() {
-  const [selectedRun, setSelectedRun] = useState<number | null>(null)
+  const [hoveredRun, setHoveredRun] = useState<number | null>(null)
 
   const runs: RunEvent[] = [
     {
-      day: "TUESDAY",
-      title: "LAKE LOOP TEMPO",
-      location: "Kurunegala Lake Round (East Pavilion)",
+      day: "Tuesday",
+      title: "Lake Loop Tempo",
+      location: "Kurunegala Lake Round",
       time: "5:30 AM",
-      distance: "5KM / 10KM",
-      intensity: "Moderate",
-      paceGroups: "5:15 / 6:00 / 7:00 min/km",
-      note: "Continuous rhythm run with structured warm-up strides.",
+      distance: "5 – 10 km",
     },
     {
-      day: "THURSDAY",
-      title: "ETHAGALA TRAIL CLIMB",
-      location: "Elephant Rock Foothills / Clock Tower",
+      day: "Thursday",
+      title: "Ethagala Trail Climb",
+      location: "Elephant Rock Foothills",
       time: "5:00 AM",
-      distance: "6KM - 8KM",
-      intensity: "Challenging",
-      paceGroups: "Hill repeats & power hiking segments",
-      note: "Elevation conditioning with stunning panoramic sunrise views.",
+      distance: "6 – 8 km",
     },
     {
-      day: "SATURDAY",
-      title: "COMMUNITY LONG RUN",
-      location: "Lake Promenade → North Western Circuit",
+      day: "Saturday",
+      title: "Community Long Run",
+      location: "North Western Circuit",
       time: "5:00 AM",
-      distance: "12KM / 16KM / 21KM",
-      intensity: "Moderate",
-      paceGroups: "Multiple pace pacers + sweeper runner",
-      note: "Supported long run with volunteer hydration points every 4km.",
+      distance: "12 – 21 km",
     },
     {
-      day: "SUNDAY",
-      title: "RECOVERY JOG & COFFEE",
-      location: "Lake Round Coffee Corner",
+      day: "Sunday",
+      title: "Recovery Jog & Coffee",
+      location: "Lake Promenade",
       time: "6:00 AM",
-      distance: "5KM EASY",
-      intensity: "Easy",
-      paceGroups: "All runners stay strictly conversational",
-      note: "Low heart rate jog followed by iced filter brews and breakfast chats.",
+      distance: "5 km easy",
     },
   ]
 
-  const getIntensityBadge = (intensity: RunEvent["intensity"]) => {
-    switch (intensity) {
-      case "Easy":
-        return "text-[#D6FF57] border-[#D6FF57]/30 bg-[#D6FF57]/10"
-      case "Moderate":
-        return "text-white border-white/20 bg-white/5"
-      case "Challenging":
-        return "text-[#D6FF57] border-[#D6FF57]/40 bg-[#D6FF57]/15"
-    }
-  }
-
   return (
-    <section id="runs" className="relative w-full bg-[#070707] py-28 md:py-36 border-t border-white/[0.08]">
-      <div className="mx-auto max-w-7xl px-6 md:px-12">
-        {/* Header Title Block */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-12 border-b border-white/[0.08]">
+    <section id="runs" className="relative w-full bg-[#F5F3EF] py-24 md:py-36">
+      <div className="mx-auto max-w-5xl px-6 md:px-12">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-10"
+        >
           <div>
-            <div className="flex items-center gap-3 mb-3">
-              <span className="h-px w-8 bg-[#D6FF57]" />
-              <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-[#D6FF57] uppercase">
-                TIMETABLE
-              </span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-[-0.03em] leading-[0.92] text-white">
-              WEEKLY RUNS
+            <p className="text-[11px] tracking-[0.25em] text-[#1A1A1A]/40 uppercase mb-4">
+              Weekly Schedule
+            </p>
+            <h2 className="font-[family-name:var(--font-serif)] text-[#1A1A1A] text-4xl sm:text-5xl md:text-6xl leading-[1] tracking-[-0.02em]">
+              When we run
             </h2>
           </div>
 
-          <div className="max-w-md">
-            <p className="text-[13px] md:text-[14px] text-white/50 leading-relaxed font-light">
-              We gather before sunrise. Bag drop and hydration available at all starting points. Never miss a session by joining our WhatsApp briefing group.
-            </p>
-          </div>
-        </div>
+          <p className="max-w-sm text-[14px] text-[#1A1A1A]/45 font-light leading-[1.7]">
+            We gather before sunrise. Bag drop and hydration at all starting points.
+            Rain or shine — runs only pause during severe storms.
+          </p>
+        </motion.div>
 
-        {/* Schedule List */}
-        <div className="divide-y divide-white/[0.08]">
-          {runs.map((run, index) => {
-            const isExpanded = selectedRun === index
-            return (
-              <motion.div
-                key={run.day}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-                onClick={() => setSelectedRun(isExpanded ? null : index)}
-                className="group cursor-pointer py-8 transition-colors duration-200 hover:bg-white/[0.02] px-2 sm:px-4"
-              >
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                  {/* Left: Day & Title */}
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-8 lg:w-1/2">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[11px] font-mono tracking-[0.25em] text-white/40 uppercase w-28 shrink-0">
-                        {run.day}
-                      </span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-[#D6FF57] transition-colors">
-                        {run.title}
-                      </h3>
-                      <div className="mt-1 flex items-center gap-2 text-[12px] text-white/40">
-                        <MapPin className="h-3.5 w-3.5 text-white/30" />
-                        <span>{run.location}</span>
-                      </div>
-                    </div>
-                  </div>
+        {/* Divider */}
+        <div className="h-px w-full bg-[#1A1A1A]" />
 
-                  {/* Right: Time, Distance & Action */}
-                  <div className="flex items-center justify-between lg:justify-end gap-6 sm:gap-8 lg:w-1/2">
-                    <div className="flex items-center gap-4">
-                      {/* Time pill */}
-                      <div className="flex items-center gap-1.5 text-[12px] font-mono text-white/70">
-                        <Clock className="h-3.5 w-3.5 text-[#D6FF57]" />
-                        <span>{run.time}</span>
-                      </div>
-
-                      {/* Distance badge */}
-                      <div className="rounded-full border border-white/15 bg-white/[0.04] px-3 py-1 text-[10px] font-bold tracking-wider text-white uppercase">
-                        {run.distance}
-                      </div>
-
-                      {/* Intensity badge */}
-                      <span
-                        className={`hidden sm:inline-block rounded-full border px-2.5 py-0.5 text-[9px] font-bold tracking-widest uppercase ${getIntensityBadge(
-                          run.intensity
-                        )}`}
-                      >
-                        {run.intensity}
-                      </span>
-                    </div>
-
-                    {/* Arrow action */}
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-300 group-hover:border-[#D6FF57] group-hover:bg-[#D6FF57] group-hover:text-black text-white/50">
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                    </div>
-                  </div>
+        {/* Run List */}
+        <div className="divide-y divide-[#1A1A1A]/10">
+          {runs.map((run, index) => (
+            <motion.div
+              key={run.day}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.06 }}
+              onMouseEnter={() => setHoveredRun(index)}
+              onMouseLeave={() => setHoveredRun(null)}
+              className="group cursor-default py-7 md:py-8 transition-all duration-200"
+            >
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                {/* Left: Day */}
+                <div className="md:w-36 shrink-0">
+                  <span className="text-[13px] font-medium tracking-[0.08em] text-[#1A1A1A]/40 uppercase">
+                    {run.day}
+                  </span>
                 </div>
 
-                {/* Expanded Details on Click */}
-                {isExpanded && (
-                  <div className="mt-6 pt-6 border-t border-white/[0.06] grid grid-cols-1 md:grid-cols-2 gap-4 text-xs animate-[fade-in-up_0.2s_ease-out]">
-                    <div className="flex items-start gap-2 text-white/70">
-                      <Activity className="h-4 w-4 text-[#D6FF57] shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-bold text-white uppercase">Pace Groups: </span>
-                        <span>{run.paceGroups}</span>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-2 text-white/50">
-                      <Calendar className="h-4 w-4 text-white/40 shrink-0 mt-0.5" />
-                      <span>{run.note}</span>
-                    </div>
+                {/* Center: Title + Location */}
+                <div className="flex-1">
+                  <h3 className="text-[20px] md:text-[24px] font-semibold tracking-tight text-[#1A1A1A] group-hover:text-[#6B8F63] transition-colors duration-300">
+                    {run.title}
+                  </h3>
+                  <p className="mt-1 text-[13px] text-[#1A1A1A]/40 font-light">
+                    {run.location}
+                  </p>
+                </div>
+
+                {/* Right: Time + Distance */}
+                <div className="flex items-center gap-8 md:gap-10">
+                  <div className="text-right">
+                    <span className="text-[13px] font-medium text-[#1A1A1A]/70">
+                      {run.time}
+                    </span>
                   </div>
-                )}
-              </motion.div>
-            )
-          })}
+                  <div className="text-right">
+                    <span className="text-[13px] font-light text-[#1A1A1A]/40">
+                      {run.distance}
+                    </span>
+                  </div>
+                  <div
+                    className={`flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300 ${
+                      hoveredRun === index
+                        ? "border-[#1A1A1A] bg-[#1A1A1A] text-white"
+                        : "border-[#1A1A1A]/15 text-[#1A1A1A]/30"
+                    }`}
+                  >
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Bottom Banner Note */}
-        <div className="mt-12 rounded-none border border-white/[0.08] bg-white/[0.02] p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="h-2 w-2 rounded-full bg-[#D6FF57] animate-pulse" />
-            <span className="text-xs tracking-wider text-white/70 uppercase">
-              Rain or Shine — Runs only adjust during severe thunderstorms.
-            </span>
-          </div>
+        {/* Bottom Divider */}
+        <div className="h-px w-full bg-[#1A1A1A]" />
+
+        {/* Bottom Note */}
+        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <p className="text-[13px] text-[#1A1A1A]/40 font-light">
+            All sessions are free and open to every pace level.
+          </p>
           <a
             href="#contact"
-            className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#D6FF57] hover:underline"
+            className="text-[12px] font-medium tracking-[0.06em] text-[#1A1A1A] hover:text-[#6B8F63] transition-colors underline underline-offset-4 decoration-[#1A1A1A]/20"
           >
-            Join WhatsApp Briefings →
+            Join our WhatsApp briefings →
           </a>
         </div>
       </div>

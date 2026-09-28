@@ -50,105 +50,102 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="relative w-full bg-[#070707] py-28 md:py-36 border-t border-white/[0.08]">
-      <div className="mx-auto max-w-7xl px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-start">
-          {/* Left Column: Community Info & Socials */}
+    <section id="contact" className="relative w-full bg-[#F5F3EF] py-24 md:py-36">
+      <div className="mx-auto max-w-5xl px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+          {/* Left Column: Warm Narrative */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-5 flex flex-col gap-6"
+            className="flex flex-col gap-6"
           >
-            <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-[#D6FF57]" />
-              <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-[#D6FF57] uppercase">
-                JOIN THE PACK
-              </span>
-            </div>
-
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-[-0.03em] leading-[0.92] text-white">
-              START YOUR
-              <br />
-              <span className="text-[#D6FF57]">STRIDE.</span>
-            </h2>
-
-            <p className="text-[14px] md:text-[15px] font-light leading-[1.7] text-white/60">
-              No memberships, no subscriptions, zero fees. Just lace up and turn up to our next morning roll-call. Have questions about paces, routes, or what shoes to wear? Drop us a note or join our direct WhatsApp group.
+            <p className="text-[11px] tracking-[0.25em] text-[#1A1A1A]/40 uppercase">
+              Join the Pack
             </p>
 
-            {/* Quick Contact Specs */}
-            <div className="flex flex-col gap-4 border-t border-white/[0.08] pt-6 text-xs text-white/60">
-              <div className="flex justify-between py-1">
-                <span className="text-white/40 uppercase tracking-widest font-mono">HOME BASE</span>
-                <span className="text-white font-semibold">Kurunegala Lake Round, Sri Lanka</span>
+            <h2 className="font-[family-name:var(--font-serif)] text-[#1A1A1A] text-4xl sm:text-5xl lg:text-6xl leading-[1] tracking-[-0.02em]">
+              Start your stride.
+            </h2>
+
+            <p className="text-[15px] md:text-[17px] font-light leading-[1.8] text-[#1A1A1A]/55">
+              No memberships, no subscriptions, zero fees. Just lace up and show up
+              to our next morning roll-call. Have questions about paces, routes, or
+              what shoes to wear? Drop us a note.
+            </p>
+
+            {/* Thin Divider */}
+            <div className="w-10 h-px bg-[#1A1A1A]/15 my-2" />
+
+            {/* Quick Details */}
+            <div className="flex flex-col gap-3 text-[14px]">
+              <div className="flex justify-between py-1 border-b border-[#1A1A1A]/8">
+                <span className="text-[#1A1A1A]/40">Home Base</span>
+                <span className="text-[#1A1A1A] font-medium">Kurunegala Lake</span>
               </div>
-              <div className="flex justify-between py-1">
-                <span className="text-white/40 uppercase tracking-widest font-mono">SCHEDULE</span>
-                <span className="text-white font-semibold">Tuesday • Thursday • Weekend</span>
+              <div className="flex justify-between py-1 border-b border-[#1A1A1A]/8">
+                <span className="text-[#1A1A1A]/40">Schedule</span>
+                <span className="text-[#1A1A1A] font-medium">Tue · Thu · Weekend</span>
               </div>
-              <div className="flex justify-between py-1">
-                <span className="text-white/40 uppercase tracking-widest font-mono">MEMBERSHIP</span>
-                <span className="text-[#D6FF57] font-semibold">100% Free Forever</span>
+              <div className="flex justify-between py-1 border-b border-[#1A1A1A]/8">
+                <span className="text-[#1A1A1A]/40">Membership</span>
+                <span className="text-[#6B8F63] font-medium">Free, forever</span>
               </div>
             </div>
 
-            {/* Social Connect Buttons */}
+            {/* Social Links — Plain text */}
             <div className="pt-4 flex flex-col gap-3">
-              <span className="text-[11px] font-mono tracking-widest text-white/40 uppercase">
-                CONNECT DIRECTLY
+              <span className="text-[11px] tracking-[0.15em] text-[#1A1A1A]/35 uppercase">
+                Connect
               </span>
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-6">
                 <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visit Stride Run Club on Instagram"
-                  className="flex h-11 items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 text-[12px] font-bold tracking-wider text-white transition-all hover:border-[#D6FF57] hover:bg-[#D6FF57] hover:text-black cursor-pointer"
+                  className="text-[14px] text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors underline underline-offset-4 decoration-[#1A1A1A]/15"
                 >
-                  INSTAGRAM
+                  Instagram
                 </a>
                 <a
                   href="https://strava.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Join Stride Run Club on Strava"
-                  className="flex h-11 items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 text-[12px] font-bold tracking-wider text-white transition-all hover:border-[#D6FF57] hover:bg-[#D6FF57] hover:text-black cursor-pointer"
+                  className="text-[14px] text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors underline underline-offset-4 decoration-[#1A1A1A]/15"
                 >
-                  STRAVA
+                  Strava
                 </a>
                 <a
                   href="https://whatsapp.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Join Stride WhatsApp Community"
-                  className="flex h-11 items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 text-[12px] font-bold tracking-wider text-white transition-all hover:border-[#D6FF57] hover:bg-[#D6FF57] hover:text-black cursor-pointer"
+                  className="text-[14px] text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors underline underline-offset-4 decoration-[#1A1A1A]/15"
                 >
-                  WHATSAPP
+                  WhatsApp
                 </a>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Intake Form */}
+          {/* Right Column: Clean Form */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="lg:col-span-7 border border-white/[0.08] bg-white/[0.02] p-8 sm:p-12 relative"
           >
             {submitted ? (
-              <div className="flex flex-col items-center justify-center py-16 text-center animate-[fade-in-up_0.4s_ease-out]">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#D6FF57]/10 text-[#D6FF57] mb-6">
-                  <CheckCircle2 className="h-8 w-8" />
+              <div className="flex flex-col items-center justify-center py-20 text-center">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#A3C19C]/20 text-[#6B8F63] mb-6">
+                  <CheckCircle2 className="h-7 w-7" />
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white mb-2">
-                  YOU'RE ON THE LIST!
+                <h3 className="font-[family-name:var(--font-serif)] text-2xl sm:text-3xl text-[#1A1A1A] mb-3">
+                  You're on the list
                 </h3>
-                <p className="max-w-md text-sm text-white/60 font-light leading-relaxed mb-6">
-                  Thanks for reaching out, {formData.name}. We'll send you the WhatsApp community invite and morning meetup drop pin shortly. See you at the lake!
+                <p className="max-w-sm text-[14px] text-[#1A1A1A]/50 font-light leading-relaxed mb-6">
+                  Thanks, {formData.name}. We'll send you the WhatsApp invite and morning meetup
+                  location shortly. See you at the lake.
                 </p>
                 <button
                   onClick={() => {
@@ -156,27 +153,27 @@ export default function ContactSection() {
                     setError(null)
                     setFormData({ name: "", contact: "", pace: "Casual (6:00 - 7:00 /km)", message: "" })
                   }}
-                  className="text-xs font-mono tracking-widest text-[#D6FF57] hover:underline uppercase"
+                  className="text-[13px] text-[#1A1A1A]/50 hover:text-[#1A1A1A] transition-colors underline underline-offset-4 cursor-pointer"
                 >
-                  Submit Another Response →
+                  Submit another response
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                 <div>
-                  <h3 className="text-xl font-bold uppercase tracking-wider text-white">
-                    RUN WITH US
+                  <h3 className="font-[family-name:var(--font-serif)] text-[24px] text-[#1A1A1A] mb-1">
+                    Run with us
                   </h3>
-                  <p className="text-xs text-white/40 mt-1">
-                    Fill this out to get added to our weekly announcements & gear discounts.
+                  <p className="text-[13px] text-[#1A1A1A]/40 font-light">
+                    Fill this out to join our weekly briefings & community group.
                   </p>
                 </div>
 
                 <div className="flex flex-col gap-6">
-                  {/* Name input */}
+                  {/* Name */}
                   <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-mono tracking-[0.2em] text-white/50 uppercase">
-                      YOUR FULL NAME *
+                    <label className="text-[12px] tracking-[0.06em] text-[#1A1A1A]/50 font-medium">
+                      Full Name *
                     </label>
                     <input
                       type="text"
@@ -184,14 +181,14 @@ export default function ContactSection() {
                       placeholder="e.g. Kasun Perera"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full border-b border-white/20 bg-transparent py-3 text-[15px] text-white placeholder:text-white/20 transition-colors focus:border-[#D6FF57] focus:outline-none"
+                      className="w-full rounded-lg border border-[#1A1A1A]/10 bg-white px-4 py-3.5 text-[15px] text-[#1A1A1A] placeholder:text-[#1A1A1A]/25 transition-colors focus:border-[#A3C19C] focus:outline-none focus:ring-2 focus:ring-[#A3C19C]/20"
                     />
                   </div>
 
-                  {/* Email or WhatsApp */}
+                  {/* Contact */}
                   <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-mono tracking-[0.2em] text-white/50 uppercase">
-                      WHATSAPP NUMBER OR EMAIL *
+                    <label className="text-[12px] tracking-[0.06em] text-[#1A1A1A]/50 font-medium">
+                      WhatsApp or Email *
                     </label>
                     <input
                       type="text"
@@ -199,64 +196,64 @@ export default function ContactSection() {
                       placeholder="+94 7X XXX XXXX or kasun@gmail.com"
                       value={formData.contact}
                       onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-                      className="w-full border-b border-white/20 bg-transparent py-3 text-[15px] text-white placeholder:text-white/20 transition-colors focus:border-[#D6FF57] focus:outline-none"
+                      className="w-full rounded-lg border border-[#1A1A1A]/10 bg-white px-4 py-3.5 text-[15px] text-[#1A1A1A] placeholder:text-[#1A1A1A]/25 transition-colors focus:border-[#A3C19C] focus:outline-none focus:ring-2 focus:ring-[#A3C19C]/20"
                     />
                   </div>
 
-                  {/* Pace Preference */}
+                  {/* Pace */}
                   <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-mono tracking-[0.2em] text-white/50 uppercase">
-                      YOUR CURRENT COMFORTABLE PACE
+                    <label className="text-[12px] tracking-[0.06em] text-[#1A1A1A]/50 font-medium">
+                      Your Pace
                     </label>
                     <select
                       value={formData.pace}
                       onChange={(e) => setFormData({ ...formData, pace: e.target.value })}
-                      className="w-full border-b border-white/20 bg-[#070707] py-3 text-[14px] text-white transition-colors focus:border-[#D6FF57] focus:outline-none cursor-pointer"
+                      className="w-full rounded-lg border border-[#1A1A1A]/10 bg-white px-4 py-3.5 text-[15px] text-[#1A1A1A] transition-colors focus:border-[#A3C19C] focus:outline-none focus:ring-2 focus:ring-[#A3C19C]/20 cursor-pointer appearance-none"
                     >
-                      <option value="First-Time / Walking Intervals">First-Time Runner / Walking Intervals</option>
-                      <option value="Casual (6:00 - 7:00 /km)">Casual Jogger (6:00 - 7:00 min/km)</option>
-                      <option value="Steady (5:15 - 6:00 /km)">Steady Pace (5:15 - 6:00 min/km)</option>
-                      <option value="Fast / Race Pace (< 5:00 /km)">Speed / Race Pace (&lt; 5:00 min/km)</option>
+                      <option value="First-Time / Walking Intervals">First-Time Runner</option>
+                      <option value="Casual (6:00 - 7:00 /km)">Casual (6:00 – 7:00 /km)</option>
+                      <option value="Steady (5:15 - 6:00 /km)">Steady (5:15 – 6:00 /km)</option>
+                      <option value="Fast / Race Pace (< 5:00 /km)">Race Pace (&lt; 5:00 /km)</option>
                     </select>
                   </div>
 
-                  {/* Optional Message */}
+                  {/* Message */}
                   <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-mono tracking-[0.2em] text-white/50 uppercase">
-                      GOALS OR NOTES (OPTIONAL)
+                    <label className="text-[12px] tracking-[0.06em] text-[#1A1A1A]/50 font-medium">
+                      Anything else? (optional)
                     </label>
                     <textarea
                       rows={3}
-                      placeholder="Training for a marathon, new to Kurunegala, or just looking for running buddies..."
+                      placeholder="Training goals, questions, or just say hi..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full border-b border-white/20 bg-transparent py-2.5 text-[14px] text-white placeholder:text-white/20 transition-colors focus:border-[#D6FF57] focus:outline-none resize-none"
+                      className="w-full rounded-lg border border-[#1A1A1A]/10 bg-white px-4 py-3 text-[15px] text-[#1A1A1A] placeholder:text-[#1A1A1A]/25 transition-colors focus:border-[#A3C19C] focus:outline-none focus:ring-2 focus:ring-[#A3C19C]/20 resize-none"
                     />
                   </div>
                 </div>
 
-                {/* Error message */}
+                {/* Error */}
                 {error && (
-                  <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-[13px] text-red-400 animate-[fade-in-up_0.3s_ease-out]">
+                  <div className="rounded-lg border border-red-300/50 bg-red-50 px-4 py-3 text-[13px] text-red-600">
                     {error}
                   </div>
                 )}
 
-                {/* Submit button */}
+                {/* Submit */}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group flex w-full items-center justify-center gap-3 rounded-full bg-[#D6FF57] py-4 text-[13px] font-black uppercase tracking-[0.16em] text-black transition-all duration-300 hover:bg-[#e0ff8a] hover:shadow-[0_0_20px_rgba(214,255,87,0.45)] hover:scale-[1.01] active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
+                  className="group flex w-full items-center justify-center gap-3 rounded-full bg-[#1A1A1A] py-4 text-[13px] font-semibold tracking-[0.06em] text-white uppercase transition-all duration-300 hover:bg-[#333] hover:shadow-lg active:scale-[0.98] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A3C19C] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin" />
-                      <span>SUBMITTING...</span>
+                      <span>Submitting...</span>
                     </>
                   ) : (
                     <>
-                      <span>JOIN CLUB TODAY</span>
-                      <Send className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      <span>Join the Club</span>
+                      <Send className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                     </>
                   )}
                 </button>

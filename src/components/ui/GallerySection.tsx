@@ -1,178 +1,125 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { MapPin, Compass, Mountain, Flame, Route, Coffee, Droplets, Trophy } from "lucide-react"
 
 interface GalleryItem {
-  title: string
-  subtitle: string
+  src: string
+  alt: string
+  caption: string
   location: string
   aspect: string
-  tag: string
-  distance: string
-  elevation: string
-  icon: typeof Mountain
-  accentColor?: string
 }
 
 export default function GallerySection() {
+  const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "")
+
   const items: GalleryItem[] = [
     {
-      title: "DAWN PATROL OVER KURUNEGALA LAKE",
-      subtitle: "First light hitting the water at 5:45 AM",
-      location: "Kurunegala Lake Round",
+      src: `${baseUrl}/images/gallery/dawn-lake.jpg`,
+      alt: "Runners at dawn by Kurunegala Lake",
+      caption: "Dawn Patrol",
+      location: "Kurunegala Lake",
       aspect: "aspect-[3/4]",
-      tag: "TEMPO TUESDAY",
-      distance: "5.2 KM",
-      elevation: "+12M",
-      icon: Route,
     },
     {
-      title: "CONQUERING ETHAGALA ELEVATION",
-      subtitle: "Legs burning, mist clearing over the city",
-      location: "Elephant Rock Ridge",
+      src: `${baseUrl}/images/gallery/trail-climb.jpg`,
+      alt: "Trail runners ascending Ethagala ridge at sunrise",
+      caption: "Ethagala Ascent",
+      location: "Elephant Rock Trail",
+      aspect: "aspect-[4/3]",
+    },
+    {
+      src: `${baseUrl}/images/gallery/road-shoes.jpg`,
+      alt: "Running shoes on wet road at dawn",
+      caption: "Rain or Shine",
+      location: "Watthimi Road",
       aspect: "aspect-square",
-      tag: "TRAIL INTERVALS",
-      distance: "8.5 KM",
-      elevation: "+340M",
-      icon: Mountain,
     },
     {
-      title: "PACK FORMATION IN UNISON",
-      subtitle: "Saturday 21K long-run crew pacing strong",
+      src: `${baseUrl}/images/gallery/dawn-lake.jpg`,
+      alt: "Morning runners by the lakeside path",
+      caption: "Community Long Run",
       location: "North Western Circuit",
       aspect: "aspect-[4/3]",
-      tag: "COMMUNITY 21K",
-      distance: "21.1 KM",
-      elevation: "+85M",
-      icon: Trophy,
     },
     {
-      title: "POST-RUN COOL DOWN & HIGH FIVES",
-      subtitle: "Hydration and smiles after the final sprint",
+      src: `${baseUrl}/images/gallery/trail-climb.jpg`,
+      alt: "Pack formation on trail at golden hour",
+      caption: "Pack Formation",
+      location: "Ethagala Foothills",
+      aspect: "aspect-[3/4]",
+    },
+    {
+      src: `${baseUrl}/images/gallery/road-shoes.jpg`,
+      alt: "Post run recovery and coffee",
+      caption: "Recovery & Coffee",
       location: "Lake Promenade",
       aspect: "aspect-square",
-      tag: "POST RUN",
-      distance: "RECOVERY",
-      elevation: "ZONE 1",
-      icon: Flame,
-    },
-    {
-      title: "RAIN OR SHINE — NO DAYS OFF",
-      subtitle: "Monsoon morning miles hitting the asphalt",
-      location: "Wathhimi Road",
-      aspect: "aspect-[3/4]",
-      tag: "ENDURANCE",
-      distance: "10.0 KM",
-      elevation: "+45M",
-      icon: Droplets,
-    },
-    {
-      title: "BREW CLUB SHAKEDOWN",
-      subtitle: "Filter roast coffee and weekend recovery stories",
-      location: "Local Roastery Corner",
-      aspect: "aspect-[4/3]",
-      tag: "SUNDAY COFFEE",
-      distance: "5.0 KM",
-      elevation: "SOCIAL",
-      icon: Coffee,
     },
   ]
 
   return (
-    <section id="gallery" className="relative w-full bg-[#070707] py-28 md:py-36 border-t border-white/[0.08]">
-      <div className="mx-auto max-w-7xl px-6 md:px-12">
-        {/* Header Block */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-12 border-b border-white/[0.08]">
+    <section id="gallery" className="relative w-full bg-[#E8E4DD] py-24 md:py-36">
+      <div className="mx-auto max-w-6xl px-6 md:px-12">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-10"
+        >
           <div>
-            <div className="flex items-center gap-3 mb-3">
-              <span className="h-px w-8 bg-[#D6FF57]" />
-              <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-[#D6FF57] uppercase">
-                ROUTE ARCHIVE
-              </span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-[-0.03em] leading-[0.92] text-white">
-              SESSIONS & CIRCUITS
+            <p className="text-[11px] tracking-[0.25em] text-[#1A1A1A]/40 uppercase mb-4">
+              Moments
+            </p>
+            <h2 className="font-[family-name:var(--font-serif)] text-[#1A1A1A] text-4xl sm:text-5xl md:text-6xl leading-[1] tracking-[-0.02em]">
+              On the road
             </h2>
           </div>
 
-          <div className="flex items-center gap-4 text-white/50 text-xs">
-            <Route className="h-4 w-4 text-[#D6FF57]" />
-            <span className="tracking-wider uppercase">Verified Kurunegala Run Formats</span>
-          </div>
-        </div>
+          <p className="max-w-xs text-[13px] text-[#1A1A1A]/40 font-light leading-[1.7]">
+            Tag <span className="font-medium text-[#1A1A1A]/60">#StrideRunClub</span> on Instagram or Strava to get featured.
+          </p>
+        </motion.div>
 
-        {/* Gallery / Route Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-10">
-          {items.map((item, idx) => {
-            const Icon = item.icon
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className={`group relative overflow-hidden border border-white/[0.08] bg-[#0c0c0c] p-7 flex flex-col justify-between transition-all duration-300 hover:border-[#D6FF57]/40 hover:bg-[#111111] ${item.aspect}`}
-              >
-                {/* Background Subtle Grid Pattern */}
-                <div
-                  className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"
-                  aria-hidden="true"
+        {/* Divider */}
+        <div className="h-px w-full bg-[#1A1A1A] mb-10" />
+
+        {/* Photo Grid — Asymmetric Magazine Layout */}
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+          {items.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              className="group relative break-inside-avoid overflow-hidden cursor-pointer"
+            >
+              {/* Image */}
+              <div className={`${item.aspect} overflow-hidden`}>
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03] filter contrast-[1.02] saturate-[0.9]"
                 />
+              </div>
 
-                {/* Top Bar: Tag & Icon */}
-                <div className="relative z-10 flex items-center justify-between">
-                  <span className="rounded-full border border-white/15 bg-black/60 px-3 py-1 text-[9px] font-mono tracking-widest text-[#D6FF57] backdrop-blur-md uppercase">
-                    {item.tag}
-                  </span>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[#D6FF57] group-hover:border-[#D6FF57]/40 group-hover:bg-[#D6FF57]/10 transition-colors">
-                    <Icon className="h-4 w-4" />
-                  </div>
-                </div>
-
-                {/* Center Route Graphic / Badges */}
-                <div className="relative z-10 my-6 flex items-center justify-between border-y border-white/[0.06] py-5">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-mono tracking-widest text-white/35 uppercase">DISTANCE</span>
-                    <span className="text-xl sm:text-2xl font-black text-white tracking-tight">{item.distance}</span>
-                  </div>
-                  <div className="h-8 w-px bg-white/[0.08]" />
-                  <div className="flex flex-col text-right">
-                    <span className="text-[10px] font-mono tracking-widest text-white/35 uppercase">ELEVATION</span>
-                    <span className="text-xl sm:text-2xl font-black text-[#D6FF57] tracking-tight">{item.elevation}</span>
-                  </div>
-                </div>
-
-                {/* Bottom Details & Caption */}
-                <div className="relative z-10 flex flex-col justify-end">
-                  <div className="flex items-center gap-1.5 text-[11px] text-[#D6FF57] font-mono tracking-wider uppercase mb-1.5">
-                    <MapPin className="h-3 w-3" />
-                    <span>{item.location}</span>
-                  </div>
-                  <h3 className="text-lg font-black tracking-tight text-white uppercase leading-snug group-hover:text-white transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 text-xs text-white/50 font-light line-clamp-2 group-hover:text-white/80 transition-colors">
-                    {item.subtitle}
+              {/* Hover Overlay with Caption */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-end">
+                <div className="p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  <p className="text-white text-[15px] font-medium tracking-tight">
+                    {item.caption}
+                  </p>
+                  <p className="text-white/60 text-[11px] tracking-wider uppercase mt-1">
+                    {item.location}
                   </p>
                 </div>
-              </motion.div>
-            )
-          })}
-        </div>
-
-        {/* Strava / Community Banner */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between border border-white/[0.08] bg-white/[0.02] p-6 gap-4">
-          <div className="flex items-center gap-3">
-            <Compass className="h-4 w-4 text-[#D6FF57]" />
-            <span className="text-xs tracking-wider text-white/70 uppercase">
-              Tag <span className="text-[#D6FF57] font-bold">#StrideRunClub</span> on Instagram or Strava to get featured in our weekly dispatch.
-            </span>
-          </div>
-          <span className="text-[11px] font-mono tracking-widest text-white/30 uppercase">
-            @STRIDERUNCLUB
-          </span>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
