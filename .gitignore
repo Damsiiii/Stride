@@ -28,3 +28,11 @@ Background/
 *.MP4
 *.MOV
 
+# Server
+server/node_modules/
+server/.env
+
+# Environment files
+.env.development
+.env.production
+.env.local

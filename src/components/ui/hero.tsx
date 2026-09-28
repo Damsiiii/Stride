@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Pause, Play, ArrowRight } from "lucide-react"
+import { Pause, Play } from "lucide-react"
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -36,14 +36,11 @@ export default function Hero() {
     setIsPlaying(!videoRef.current.paused)
   }
 
-  const marqueeText =
-    "STRIDE RUN CLUB • KURUNEGALA • SRI LANKA • ELEPHANT ROCK TRAILS • EVERY TUESDAY, THURSDAY & WEEKEND • JOIN THE PACK • "
-
   return (
-    <section className="relative flex min-h-[100svh] w-full flex-col justify-between overflow-hidden bg-[#070707] pt-[72px] text-left">
+    <section className="relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-[#1A1A1A]">
       {/* 1. Full-bleed Background Video & Poster Layer */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
-        {/* Instant Poster Image (Zero CLS, renders immediately before video starts) */}
+        {/* Poster Image */}
         <picture
           className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ${
             isVideoLoaded && !prefersReducedMotion ? "opacity-0" : "opacity-100"
@@ -66,13 +63,13 @@ export default function Hero() {
           <img
             src={`${baseUrl}/videos/hero-poster.jpg`}
             alt="Stride Run Club runners in Kurunegala"
-            className="w-full h-full object-cover object-center scale-[1.02]"
+            className="w-full h-full object-cover object-center"
             loading="eager"
             fetchPriority="high"
           />
         </picture>
 
-        {/* Responsive Background Video (Auto-disabled if reduced-motion preferred) */}
+        {/* Background Video */}
         {!prefersReducedMotion && (
           <video
             ref={videoRef}
@@ -85,11 +82,10 @@ export default function Hero() {
             tabIndex={-1}
             onPlaying={() => setIsVideoLoaded(true)}
             poster={`${baseUrl}/videos/hero-poster.webp`}
-            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 scale-[1.02] ${
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
               isVideoLoaded ? "opacity-100" : "opacity-0"
             }`}
           >
-            {/* Desktop sources (min-width: 769px) */}
             <source
               media="(min-width: 769px)"
               src={`${baseUrl}/videos/hero-desktop.webm`}
@@ -100,8 +96,6 @@ export default function Hero() {
               src={`${baseUrl}/videos/hero-desktop.mp4`}
               type="video/mp4"
             />
-
-            {/* Mobile sources (max-width: 768px) */}
             <source
               media="(max-width: 768px)"
               src={`${baseUrl}/videos/hero-mobile.webm`}
@@ -115,117 +109,62 @@ export default function Hero() {
           </video>
         )}
 
-        {/* 2. Visual Contrast Layers: Radial Vignette + Multi-stop Gradient */}
+        {/* 2. Warm dark overlay — softer than pure black */}
         <div
-          className="absolute inset-0 bg-[radial-gradient(80%_80%_at_50%_40%,transparent_0%,rgba(0,0,0,0.65)_100%)] pointer-events-none"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-[#070707] pointer-events-none"
+          className="absolute inset-0 bg-black/50 pointer-events-none"
           aria-hidden="true"
         />
 
-        {/* 3. Subtle Film Grain overlay */}
+        {/* 3. Film Grain Texture */}
         <div
-          className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"
+          className="absolute inset-0 opacity-[0.06] pointer-events-none mix-blend-overlay"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
+            backgroundSize: "128px 128px",
+          }}
           aria-hidden="true"
         />
       </div>
 
-      {/* Desktop Left Architectural Guide Line */}
-      <div
-        className="hidden lg:block absolute left-10 top-0 bottom-11 w-px bg-white/[0.08] pointer-events-none z-10"
-        aria-hidden="true"
-      >
-        <span className="absolute top-28 -left-3 text-[10px] font-mono tracking-[0.25em] text-white/25 -rotate-90">
-          01 // STRIDE
-        </span>
-      </div>
-
-      {/* Main Left-Aligned Content */}
-      <div className="relative z-20 flex w-full max-w-7xl flex-1 flex-col justify-center px-6 py-12 md:px-14 lg:px-20 text-left">
-        {/* Top Kicker / Badge */}
-        <div className="mb-4 inline-flex items-center gap-2.5 self-start rounded-full border border-white/10 bg-black/40 px-3.5 py-1.5 backdrop-blur-md">
-          <span className="h-2 w-2 rounded-full bg-[#D6FF57] animate-[pulse-dot_2s_ease-in-out_infinite]" />
-          <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-white/70 uppercase">
-            CHAPTER 01 • EST. 2023
-          </span>
-        </div>
-
-        {/* Massive Editorial Headline */}
-        <h1 className="font-black text-white uppercase tracking-[-0.04em] leading-[0.85] text-[15vw] sm:text-[12vw] md:text-[9.5vw] lg:text-[116px] xl:text-[130px] drop-shadow-2xl select-none text-left">
-          FIND YOUR
-          <br />
-          <span className="text-white relative inline-block">
-            STRIDE
-            <span className="inline-block text-[#D6FF57] ml-2 select-none">.</span>
-          </span>
+      {/* Center-Aligned Headline Content */}
+      <div className="relative z-20 flex flex-col items-center justify-center text-center px-6 max-w-4xl">
+        {/* Main Headline — Serif Editorial */}
+        <h1 className="font-[family-name:var(--font-serif)] text-white text-[13vw] sm:text-[10vw] md:text-[8vw] lg:text-[100px] xl:text-[120px] leading-[0.9] tracking-[-0.02em] select-none">
+          Find Your Stride
         </h1>
 
-        {/* Secondary Subheading */}
-        <div className="mt-4 flex items-center justify-start gap-3">
-          <div className="h-[2px] w-8 bg-[#D6FF57]" />
-          <h2 className="text-[12px] sm:text-[14px] md:text-[16px] font-extrabold uppercase tracking-[0.25em] text-white/70 text-left">
-            UNDER ELEPHANT ROCK
-          </h2>
-        </div>
+        {/* Italic Subtitle */}
+        <p className="mt-4 md:mt-6 font-[family-name:var(--font-serif)] italic text-white/70 text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] tracking-[0.02em]">
+          run smooth, never alone
+        </p>
+
+        {/* Thin Divider */}
+        <div className="mt-8 w-12 h-px bg-white/30" aria-hidden="true" />
+
+        {/* Location Tag */}
+        <p className="mt-6 text-[11px] sm:text-[12px] font-medium tracking-[0.2em] text-white/40 uppercase">
+          Kurunegala · Sri Lanka
+        </p>
       </div>
 
-      {/* Bottom Information Row & CTA - All Aligned to Left */}
-      <div className="relative z-20 w-full max-w-7xl px-6 pb-8 md:px-14 lg:px-20 text-left">
-        <div className="flex flex-col gap-6 border-t border-white/[0.08] pt-6 text-left">
-          {/* Club Description */}
-          <p className="text-[13px] sm:text-[15px] font-light leading-[1.65] text-white/60 max-w-2xl text-left">
-            Kurunegala's premier running community. Connecting runners of all paces around the lake, Ethagala trails, and scenic North Western routes.
-          </p>
-
-          {/* Action Buttons & Video Play/Pause - Grouped on the Left */}
-          <div className="flex flex-wrap items-center justify-start gap-3 sm:gap-4 pt-1">
-            <a
-              href="#runs"
-              className="group inline-flex items-center gap-3 rounded-full bg-[#D6FF57] px-8 py-3.5 text-[12px] font-black tracking-[0.14em] text-black uppercase transition-all duration-300 hover:bg-[#e0ff8a] hover:shadow-[0_0_20px_rgba(214,255,87,0.5)] hover:scale-[1.02] active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              <span>EXPLORE RUNS</span>
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-            <a
-              href="#about"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3.5 text-[12px] font-bold tracking-[0.14em] text-white/80 uppercase backdrop-blur-sm transition-all hover:bg-white/10 hover:text-white cursor-pointer"
-            >
-              OUR STORY
-            </a>
-
-            {/* Video Play/Pause Motion Accessibility Control */}
-            {!prefersReducedMotion && isVideoLoaded && (
-              <button
-                onClick={togglePlayPause}
-                aria-label={isPlaying ? "Pause background video" : "Play background video"}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/50 px-4 py-3.5 text-white/70 backdrop-blur-md transition-all hover:border-white/30 hover:bg-black/70 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D6FF57] cursor-pointer"
-                title={isPlaying ? "Pause background video" : "Play background video"}
-              >
-                {isPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
-                <span className="text-[10px] font-mono tracking-widest uppercase">
-                  {isPlaying ? "PAUSE VIDEO" : "PLAY VIDEO"}
-                </span>
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* 4. Marquee Ticker at the Very Bottom */}
-      <div className="relative z-20 h-11 w-full overflow-hidden border-t border-white/[0.08] bg-black/60 backdrop-blur-md flex items-center">
-        <div className="flex w-max animate-[marquee_30s_linear_infinite] select-none whitespace-nowrap">
-          <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-white/35 uppercase px-4">
-            {marqueeText}
+      {/* Video Play/Pause — Bottom-Right Corner */}
+      {!prefersReducedMotion && isVideoLoaded && (
+        <button
+          onClick={togglePlayPause}
+          aria-label={isPlaying ? "Pause background video" : "Play background video"}
+          className="absolute bottom-6 right-6 z-30 flex items-center gap-2 rounded-full bg-black/30 px-3 py-2 text-white/50 backdrop-blur-md transition-all hover:bg-black/50 hover:text-white/80 cursor-pointer"
+          title={isPlaying ? "Pause" : "Play"}
+        >
+          {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
+          <span className="text-[9px] tracking-widest uppercase">
+            {isPlaying ? "Pause" : "Play"}
           </span>
-          <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-white/35 uppercase px-4" aria-hidden="true">
-            {marqueeText}
-          </span>
-          <span className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-white/35 uppercase px-4" aria-hidden="true">
-            {marqueeText}
-          </span>
-        </div>
+        </button>
+      )}
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-40">
+        <div className="w-px h-10 bg-gradient-to-b from-transparent to-white/60" />
       </div>
     </section>
   )
