@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const contactRoutes = require("./routes/contacts");
+const memberRoutes = require("./routes/members");
+const eventRoutes = require("./routes/events");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -28,12 +30,14 @@ app.use(
         callback(null, true); // Alternatively allow all origins if not explicitly restricted
       }
     },
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "DELETE"],
   })
 );
 
 // ── Routes ─────────────────────────────────────────────────
 app.use("/api/contacts", contactRoutes);
+app.use("/api/members", memberRoutes);
+app.use("/api/events", eventRoutes);
 
 // Health check
 app.get("/api/health", (_req, res) => {

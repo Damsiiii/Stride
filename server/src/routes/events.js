@@ -1,23 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const Contact = require("../models/Contact");
+const Event = require("../models/Event");
 
-// GET /api/contacts — List contact submissions (with pagination)
+// GET /api/events — List events (with pagination)
 router.get("/", async (req, res) => {
   try {
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 20;
     const skip = (page - 1) * limit;
 
-    const total = await Contact.countDocuments();
-    const contacts = await Contact.find()
-      .sort({ createdAt: -1 })
+    const total = await Event.countDocuments();
+    const events = await Event.find()
+      .sort({ date: 1 })
       .skip(skip)
       .limit(limit);
 
     return res.status(200).json({
       success: true,
-      data: contacts,
+      data: events,
       pagination: {
         total,
         page,
@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
       },
     });
   } catch (err) {
-    console.error("Error fetching contacts:", err);
+    console.error("Error fetching events:", err);
     return res.status(500).json({
       success: false,
       error: "Something went wrong. Please try again later.",
@@ -34,30 +34,30 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET /api/contacts/:id — Fetch a single contact submission by ID
+// GET /api/events/:id — Fetch a single event by ID
 router.get("/:id", async (req, res) => {
   try {
-    const contact = await Contact.findById(req.params.id);
-    if (!contact) {
+    const event = await Event.findById(req.params.id);
+    if (!event) {
       return res.status(404).json({
         success: false,
-        error: "Contact submission not found.",
+        error: "Event not found.",
       });
     }
 
     return res.status(200).json({
       success: true,
-      data: contact,
+      data: event,
     });
   } catch (err) {
     if (err.name === "CastError") {
       return res.status(400).json({
         success: false,
-        error: "Invalid contact ID format.",
+        error: "Invalid event ID format.",
       });
     }
 
-    console.error("Error fetching contact submission:", err);
+    console.error("Error fetching event:", err);
     return res.status(500).json({
       success: false,
       error: "Something went wrong. Please try again later.",
@@ -65,38 +65,34 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// POST /api/contacts — Save a new contact form submission
+// POST /api/events — Create a new event
 router.post("/", async (req, res) => {
   try {
-    const { name, contact, pace, message } = req.body;
+    const { title, date, location, distance, description, paceGroup } = req.body;
 
-    // Basic validation
-    if (!name || !contact) {
+    if (!title || !date || !location) {
       return res.status(400).json({
         success: false,
-        error: "Name and contact information are required.",
+        error: "Title, date, and location are required.",
       });
     }
 
-    const newContact = new Contact({
-      name: name.trim(),
-      contact: contact.trim(),
-      pace: pace || "Casual (6:00 - 7:00 /km)",
-      message: message ? message.trim() : "",
+    const event = new Event({
+      title: title.trim(),
+      date: new Date(date),
+      location: location.trim(),
+      distance: distance ? distance.trim() : "5K / 10K",
+      description: description ? description.trim() : "",
+      paceGroup: paceGroup ? paceGroup.trim() : "All Paces",
     });
 
-    const savedContact = await newContact.save();
+    const savedEvent = await event.save();
 
     return res.status(201).json({
       success: true,
-      data: {
-        id: savedContact._id,
-        name: savedContact.name,
-        createdAt: savedContact.createdAt,
-      },
+      data: savedEvent,
     });
   } catch (err) {
-    // Mongoose validation error
     if (err.name === "ValidationError") {
       const messages = Object.values(err.errors).map((e) => e.message);
       return res.status(400).json({
@@ -105,7 +101,7 @@ router.post("/", async (req, res) => {
       });
     }
 
-    console.error("Error saving contact:", err);
+    console.error("Error creating event:", err);
     return res.status(500).json({
       success: false,
       error: "Something went wrong. Please try again later.",
@@ -113,30 +109,30 @@ router.post("/", async (req, res) => {
   }
 });
 
-// DELETE /api/contacts/:id — Delete a contact submission by ID
+// DELETE /api/events/:id — Delete an event by ID
 router.delete("/:id", async (req, res) => {
   try {
-    const deletedContact = await Contact.findByIdAndDelete(req.params.id);
-    if (!deletedContact) {
+    const deletedEvent = await Event.findByIdAndDelete(req.params.id);
+    if (!deletedEvent) {
       return res.status(404).json({
         success: false,
-        error: "Contact submission not found.",
+        error: "Event not found.",
       });
     }
 
     return res.status(200).json({
       success: true,
-      message: "Contact submission deleted successfully.",
+      message: "Event deleted successfully.",
     });
   } catch (err) {
     if (err.name === "CastError") {
       return res.status(400).json({
         success: false,
-        error: "Invalid contact ID format.",
+        error: "Invalid event ID format.",
       });
     }
 
-    console.error("Error deleting contact submission:", err);
+    console.error("Error deleting event:", err);
     return res.status(500).json({
       success: false,
       error: "Something went wrong. Please try again later.",
@@ -145,4 +141,3 @@ router.delete("/:id", async (req, res) => {
 });
 
 module.exports = router;
-
