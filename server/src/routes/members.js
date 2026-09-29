@@ -1,23 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const Contact = require("../models/Contact");
+const Member = require("../models/Member");
 
-// GET /api/contacts — List contact submissions (with pagination)
+// GET /api/members — List all members (with pagination)
 router.get("/", async (req, res) => {
   try {
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 20;
     const skip = (page - 1) * limit;
 
-    const total = await Contact.countDocuments();
-    const contacts = await Contact.find()
-      .sort({ createdAt: -1 })
+    const total = await Member.countDocuments();
+    const members = await Member.find()
+      .sort({ joinedAt: -1 })
       .skip(skip)
       .limit(limit);
 
     return res.status(200).json({
       success: true,
-      data: contacts,
+      data: members,
       pagination: {
         total,
         page,
@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
       },
     });
   } catch (err) {
-    console.error("Error fetching contacts:", err);
+    console.error("Error fetching members:", err);
     return res.status(500).json({
       success: false,
       error: "Something went wrong. Please try again later.",
@@ -34,30 +34,30 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET /api/contacts/:id — Fetch a single contact submission by ID
+// GET /api/members/:id — Fetch a single member by ID
 router.get("/:id", async (req, res) => {
   try {
-    const contact = await Contact.findById(req.params.id);
-    if (!contact) {
+    const member = await Member.findById(req.params.id);
+    if (!member) {
       return res.status(404).json({
         success: false,
-        error: "Contact submission not found.",
+        error: "Member not found.",
       });
     }
 
     return res.status(200).json({
       success: true,
-      data: contact,
+      data: member,
     });
   } catch (err) {
     if (err.name === "CastError") {
       return res.status(400).json({
         success: false,
-        error: "Invalid contact ID format.",
+        error: "Invalid member ID format.",
       });
     }
 
-    console.error("Error fetching contact submission:", err);
+    console.error("Error fetching member:", err);
     return res.status(500).json({
       success: false,
       error: "Something went wrong. Please try again later.",
@@ -65,37 +65,47 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// POST /api/contacts — Save a new contact form submission
+// POST /api/members — Register a new member
 router.post("/", async (req, res) => {
   try {
-    const { name, contact, pace, message } = req.body;
+    const { name, email, phone, pace, experienceLevel } = req.body;
 
     // Basic validation
-    if (!name || !contact) {
+    if (!name || !email) {
       return res.status(400).json({
         success: false,
-        error: "Name and contact information are required.",
+        error: "Name and email are required.",
       });
     }
 
-    const newContact = new Contact({
+    const member = new Member({
       name: name.trim(),
-      contact: contact.trim(),
+      email: email.trim(),
+      phone: phone ? phone.trim() : undefined,
       pace: pace || "Casual (6:00 - 7:00 /km)",
-      message: message ? message.trim() : "",
+      experienceLevel: experienceLevel || "Beginner",
     });
 
-    const savedContact = await newContact.save();
+    const saved = await member.save();
 
     return res.status(201).json({
       success: true,
       data: {
-        id: savedContact._id,
-        name: savedContact.name,
-        createdAt: savedContact.createdAt,
+        id: saved._id,
+        name: saved.name,
+        email: saved.email,
+        joinedAt: saved.joinedAt,
       },
     });
   } catch (err) {
+    // Duplicate email (MongoDB unique index violation)
+    if (err.code === 11000) {
+      return res.status(409).json({
+        success: false,
+        error: "A member with this email already exists.",
+      });
+    }
+
     // Mongoose validation error
     if (err.name === "ValidationError") {
       const messages = Object.values(err.errors).map((e) => e.message);
@@ -105,7 +115,7 @@ router.post("/", async (req, res) => {
       });
     }
 
-    console.error("Error saving contact:", err);
+    console.error("Error registering member:", err);
     return res.status(500).json({
       success: false,
       error: "Something went wrong. Please try again later.",
@@ -113,30 +123,30 @@ router.post("/", async (req, res) => {
   }
 });
 
-// DELETE /api/contacts/:id — Delete a contact submission by ID
+// DELETE /api/members/:id — Delete a member by ID
 router.delete("/:id", async (req, res) => {
   try {
-    const deletedContact = await Contact.findByIdAndDelete(req.params.id);
-    if (!deletedContact) {
+    const deletedMember = await Member.findByIdAndDelete(req.params.id);
+    if (!deletedMember) {
       return res.status(404).json({
         success: false,
-        error: "Contact submission not found.",
+        error: "Member not found.",
       });
     }
 
     return res.status(200).json({
       success: true,
-      message: "Contact submission deleted successfully.",
+      message: "Member deleted successfully.",
     });
   } catch (err) {
     if (err.name === "CastError") {
       return res.status(400).json({
         success: false,
-        error: "Invalid contact ID format.",
+        error: "Invalid member ID format.",
       });
     }
 
-    console.error("Error deleting contact submission:", err);
+    console.error("Error deleting member:", err);
     return res.status(500).json({
       success: false,
       error: "Something went wrong. Please try again later.",

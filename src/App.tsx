@@ -1,12 +1,15 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Navbar from "@/components/ui/Navbar"
 import Hero from "@/components/ui/hero"
 import AboutSection from "@/components/ui/AboutSection"
 import ScheduleSection from "@/components/ui/ScheduleSection"
 import GallerySection from "@/components/ui/GallerySection"
 import ContactSection from "@/components/ui/ContactSection"
+import JoinSection from "@/components/ui/JoinSection"
 import Footer from "@/components/ui/Footer"
+import AdminDashboard from "@/pages/AdminDashboard"
 
-export default function App() {
+function PublicSite() {
   return (
     <div className="relative min-h-screen w-full bg-[#E8E4DD] text-[#1A1A1A] selection:bg-[#A3C19C] selection:text-[#1A1A1A]">
       {/* Accessibility: Skip to Content */}
@@ -26,6 +29,7 @@ export default function App() {
         <AboutSection />
         <ScheduleSection />
         <GallerySection />
+        <JoinSection />
         <ContactSection />
       </main>
 
@@ -34,3 +38,15 @@ export default function App() {
     </div>
   )
 }
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PublicSite />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}
+

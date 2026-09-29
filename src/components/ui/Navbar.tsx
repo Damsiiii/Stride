@@ -31,6 +31,7 @@ export default function Navbar() {
     { label: "About", href: "#about" },
     { label: "Runs", href: "#runs" },
     { label: "Gallery", href: "#gallery" },
+    { label: "Join", href: "#join" },
     { label: "Contact", href: "#contact" },
   ]
 
@@ -43,31 +44,17 @@ export default function Navbar() {
   }
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ${
-        isScrolled
-          ? "bg-[#E8E4DD]/90 backdrop-blur-md shadow-[0_1px_0_rgba(26,26,26,0.1)]"
-          : "bg-transparent"
-      }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-[#E8E4DD] shadow-[0_1px_0_rgba(26,26,26,0.1)] transition-all duration-300">
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-6 md:px-12 lg:px-16">
         {/* Left: Clean Text Logo */}
         <a
           href="#"
           className="group flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A3C19C] rounded-sm transition-opacity hover:opacity-70"
         >
-          <span
-            className={`text-[15px] md:text-[17px] font-semibold tracking-[0.08em] uppercase transition-colors duration-500 ${
-              isScrolled ? "text-[#1A1A1A]" : "text-white"
-            }`}
-          >
+          <span className="text-[15px] md:text-[17px] font-semibold tracking-[0.08em] uppercase text-[#1A1A1A]">
             Stride
           </span>
-          <span
-            className={`text-[15px] md:text-[17px] font-light tracking-[0.08em] uppercase transition-colors duration-500 ${
-              isScrolled ? "text-[#1A1A1A]/60" : "text-white/60"
-            }`}
-          >
+          <span className="text-[15px] md:text-[17px] font-light tracking-[0.08em] uppercase text-[#1A1A1A]/60">
             Running Club
           </span>
         </a>
@@ -82,9 +69,7 @@ export default function Navbar() {
                 e.preventDefault()
                 handleLinkClick(link.href)
               }}
-              className={`group relative py-1 text-[13px] font-medium tracking-[0.04em] transition-colors duration-300 hover:opacity-100 ${
-                isScrolled ? "text-[#1A1A1A]/60 hover:text-[#1A1A1A]" : "text-white/60 hover:text-white"
-              }`}
+              className="group relative py-1 text-[13px] font-medium tracking-[0.04em] text-[#1A1A1A]/60 hover:text-[#1A1A1A] transition-colors duration-300"
             >
               <span>{link.label}</span>
             </a>
@@ -94,16 +79,12 @@ export default function Navbar() {
         {/* Right: CTA + Mobile Toggle */}
         <div className="flex items-center gap-4">
           <a
-            href="#contact"
+            href="#join"
             onClick={(e) => {
               e.preventDefault()
-              handleLinkClick("#contact")
+              handleLinkClick("#join")
             }}
-            className={`hidden sm:inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-[12px] font-semibold tracking-[0.06em] uppercase transition-all duration-300 cursor-pointer ${
-              isScrolled
-                ? "bg-[#1A1A1A] text-white hover:bg-[#333]"
-                : "bg-white text-[#1A1A1A] hover:bg-white/90"
-            }`}
+            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-[#1A1A1A] text-white hover:bg-[#333] px-6 py-2.5 text-[12px] font-semibold tracking-[0.06em] uppercase transition-all duration-300 cursor-pointer"
           >
             <span>Join Us</span>
             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -114,11 +95,7 @@ export default function Navbar() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open navigation menu"}
             aria-expanded={mobileMenuOpen}
-            className={`flex md:hidden h-10 w-10 items-center justify-center rounded-full transition-all cursor-pointer ${
-              isScrolled
-                ? "text-[#1A1A1A] hover:bg-[#1A1A1A]/10"
-                : "text-white hover:bg-white/10"
-            }`}
+            className="flex md:hidden h-10 w-10 items-center justify-center rounded-full text-[#1A1A1A] hover:bg-[#1A1A1A]/10 transition-all cursor-pointer"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -147,10 +124,10 @@ export default function Navbar() {
 
           <div className="mt-auto pt-8">
             <a
-              href="#contact"
+              href="#join"
               onClick={(e) => {
                 e.preventDefault()
-                handleLinkClick("#contact")
+                handleLinkClick("#join")
               }}
               className="flex items-center justify-center gap-2 rounded-full bg-[#1A1A1A] py-4 text-[13px] font-semibold tracking-[0.08em] text-white uppercase cursor-pointer"
             >
