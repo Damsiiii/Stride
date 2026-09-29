@@ -1,11 +1,9 @@
-"use client"
-
 import type { ReactNode } from "react"
 import { motion } from "framer-motion"
-import { Users, MessageCircle, Calendar, ArrowLeft } from "lucide-react"
+import { Users, MessageCircle, Calendar, ArrowLeft, Image as ImageIcon } from "lucide-react"
 import { clsx } from "clsx"
 
-type Tab = "members" | "contacts" | "events"
+type Tab = "members" | "contacts" | "events" | "gallery"
 
 interface AdminLayoutProps {
   activeTab: Tab
@@ -17,6 +15,7 @@ const tabs: { id: Tab; label: string; icon: typeof Users }[] = [
   { id: "members", label: "Members", icon: Users },
   { id: "contacts", label: "Contacts", icon: MessageCircle },
   { id: "events", label: "Events", icon: Calendar },
+  { id: "gallery", label: "Gallery", icon: ImageIcon },
 ]
 
 export default function AdminLayout({ activeTab, onTabChange, children }: AdminLayoutProps) {
@@ -28,9 +27,11 @@ export default function AdminLayout({ activeTab, onTabChange, children }: AdminL
           {/* Logo */}
           <div className="flex items-center gap-3">
             <a
-              href="/"
+              href="http://localhost:5173"
+              target="_blank"
+              rel="noreferrer"
               className="flex items-center gap-2 text-white/50 hover:text-white transition-colors"
-              aria-label="Back to public site"
+              title="Open public site"
             >
               <ArrowLeft className="h-4 w-4" />
             </a>
@@ -39,7 +40,7 @@ export default function AdminLayout({ activeTab, onTabChange, children }: AdminL
               Stride
             </span>
             <span className="text-[13px] text-white/40 font-medium tracking-wider uppercase">
-              Admin
+              Admin Portal
             </span>
           </div>
 

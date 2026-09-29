@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Search, Trash2, Loader2, UserX } from "lucide-react"

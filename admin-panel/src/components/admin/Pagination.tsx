@@ -1,5 +1,3 @@
-"use client"
-
 import { memo } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -49,4 +47,3 @@ const Pagination = memo(function Pagination({
 })
 
 export default Pagination
-

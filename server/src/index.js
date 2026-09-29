@@ -7,6 +7,7 @@ const cors = require("cors");
 const contactRoutes = require("./routes/contacts");
 const memberRoutes = require("./routes/members");
 const eventRoutes = require("./routes/events");
+const galleryRoutes = require("./routes/gallery");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -30,7 +31,7 @@ app.use(
         callback(null, true); // Alternatively allow all origins if not explicitly restricted
       }
     },
-    methods: ["GET", "POST", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 
@@ -38,6 +39,7 @@ app.use(
 app.use("/api/contacts", contactRoutes);
 app.use("/api/members", memberRoutes);
 app.use("/api/events", eventRoutes);
+app.use("/api/gallery", galleryRoutes);
 
 // Health check
 app.get("/api/health", (_req, res) => {

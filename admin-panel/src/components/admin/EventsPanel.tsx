@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect, useCallback } from "react"
 import { motion } from "framer-motion"
 import { Trash2, Loader2, CalendarX, Plus, Send } from "lucide-react"
