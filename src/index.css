@@ -101,6 +101,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
@@ -115,7 +116,7 @@
     color: #1A1A1A;
   }
 
-  /* Thin warm scrollbar */
+  /* Thin warm custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -126,8 +127,29 @@
   ::-webkit-scrollbar-thumb {
     background: rgba(26, 26, 26, 0.2);
     border-radius: 9999px;
+    transition: background 0.3s ease;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(26, 26, 26, 0.4);
   }
+
+  /* Universal smooth interaction defaults */
+  a, button, input, select, textarea {
+    transition-property: color, background-color, border-color, transform, opacity, box-shadow;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    transition-duration: 250ms;
+  }
 }
+
+@layer utilities {
+  .gpu-smooth {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .smooth-image {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  }
+}
+

@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { lazy, Suspense } from "react"
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
+import { motion, AnimatePresence } from "framer-motion"
 import Navbar from "@/components/ui/Navbar"
 import Hero from "@/components/ui/hero"
 import AboutSection from "@/components/ui/AboutSection"
@@ -7,7 +9,22 @@ import GallerySection from "@/components/ui/GallerySection"
 import ContactSection from "@/components/ui/ContactSection"
 import JoinSection from "@/components/ui/JoinSection"
 import Footer from "@/components/ui/Footer"
-import AdminDashboard from "@/pages/AdminDashboard"
+
+// Lazy-load Admin Dashboard chunk for faster initial page load
+const AdminDashboard = lazy(() => import("@/pages/AdminDashboard"))
+
+function PageLoader() {
+  return (
+    <div className="flex h-screen w-full items-center justify-center bg-[#E8E4DD] text-[#1A1A1A]">
+      <div className="flex flex-col items-center gap-3">
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-[#1A1A1A] border-t-transparent" />
+        <span className="text-[12px] font-medium tracking-[0.1em] uppercase text-[#1A1A1A]/60">
+          Loading Stride...
+        </span>
+      </div>
+    </div>
+  )
+}
 
 function PublicSite() {
   return (
@@ -39,14 +56,51 @@ function PublicSite() {
   )
 }
 
+function AnimatedRoutes() {
+  const location = useLocation()
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+            >
+              <PublicSite />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <AdminDashboard />
+              </motion.div>
+            </Suspense>
+          }
+        />
+      </Routes>
+    </AnimatePresence>
+  )
+}
+
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<PublicSite />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-      </Routes>
+      <AnimatedRoutes />
     </BrowserRouter>
   )
 }
+
 
