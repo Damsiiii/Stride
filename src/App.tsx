@@ -41,7 +41,7 @@ function PublicSite() {
 
 export default function App() {
   return (
-    <BrowserRouter basename="/Stride">
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<PublicSite />} />
         <Route path="/admin" element={<AdminDashboard />} />
