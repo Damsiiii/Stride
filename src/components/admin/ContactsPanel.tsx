@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { Search, Trash2, Loader2, MessageSquareOff, ChevronDown, ChevronUp } from "lucide-react"
 import Pagination from "@/components/admin/Pagination"
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000"
+const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? "http://localhost:5000" : "")
 
 interface Contact {
   _id: string

@@ -28,7 +28,7 @@ export default function AdminLayout({ activeTab, onTabChange, children }: AdminL
           {/* Logo */}
           <div className="flex items-center gap-3">
             <a
-              href="/Stride/"
+              href="/"
               className="flex items-center gap-2 text-white/50 hover:text-white transition-colors"
               aria-label="Back to public site"
             >

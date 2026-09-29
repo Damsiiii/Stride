@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { CheckCircle2, Send, Loader2 } from "lucide-react"
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000"
+const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? "http://localhost:5000" : "")
 
 export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false)
